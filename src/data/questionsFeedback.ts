@@ -3,7 +3,7 @@ import type { FeedbackQuestion } from '../types'
 export const questionsFeedback: FeedbackQuestion[] = [
   {
     id: 1,
-    question: 'What describes your gender identity the best?',
+    question: 'What best describes your gender identity?',
     questionType: 'smallSelection',
     answers: [
       {
@@ -57,7 +57,7 @@ export const questionsFeedback: FeedbackQuestion[] = [
   },
   {
     id: 3,
-    question: 'What describes your sexuality the best?',
+    question: 'What best describes your sexuality?',
     questionType: 'smallSelection',
     answers: [
       {
@@ -89,7 +89,7 @@ export const questionsFeedback: FeedbackQuestion[] = [
   },
   {
     id: 4,
-    question: 'What describes your current relationship status the best?',
+    question: 'What best describes your current relationship status?',
     questionType: 'smallSelection',
     answers: [
       {
@@ -108,12 +108,12 @@ export const questionsFeedback: FeedbackQuestion[] = [
         effect: 'Poly',
       },
       {
-        label: 'Single, previously had',
+        label: 'Single, previously in a relationship',
         color: '#4CAF50',
         effect: 'Single',
       },
       {
-        label: 'Single, never had',
+        label: 'Single, never in a relationship',
         color: '#AF4C4C',
         effect: 'Never',
       },
@@ -168,7 +168,7 @@ export const questionsFeedback: FeedbackQuestion[] = [
         effect: 'Regular',
       },
       {
-        label: 'Occasionally, few times a month',
+        label: 'Occasionally, a few times a month',
         color: '#6d4cb0',
         effect: 'Occasional',
       },
@@ -229,7 +229,7 @@ export const questionsFeedback: FeedbackQuestion[] = [
   },
   {
     id: 9,
-    question: 'What is your highest obtained education level?',
+    question: 'What is your highest completed level of education?',
     questionType: 'smallSelection',
     answers: [
       {
@@ -261,7 +261,7 @@ export const questionsFeedback: FeedbackQuestion[] = [
   },
   {
     id: 10,
-    question: 'What describes your current employment status the best?',
+    question: 'What best describes your current employment status?',
     questionType: 'smallSelection',
     answers: [
       {
@@ -288,7 +288,7 @@ export const questionsFeedback: FeedbackQuestion[] = [
   },
   {
     id: 11,
-    question: 'What describes your current job type the best?',
+    question: 'What best describes your current job type?',
     questionType: 'smallSelection',
     answers: [
       {
@@ -644,7 +644,7 @@ export const questionsFeedback: FeedbackQuestion[] = [
         effect: 'City',
       },
       {
-        label: 'Small city or a Town',
+        label: 'Small city or town',
         color: '#4c96af',
         effect: 'Town',
       },
@@ -654,7 +654,7 @@ export const questionsFeedback: FeedbackQuestion[] = [
         effect: 'Village',
       },
       {
-        label: 'Isolated (e.g Forest Home)',
+        label: 'Isolated (e.g., forest home)',
         color: '#4caf50',
         effect: 'Isolated',
       },
@@ -667,7 +667,7 @@ export const questionsFeedback: FeedbackQuestion[] = [
   },
   {
     id: 16,
-    question: 'Politically speaking, how do you view yourself on Culture?',
+    question: 'Politically speaking, how do you view yourself on culture?',
     questionType: 'smallSelection',
     answers: [
       {
@@ -714,7 +714,7 @@ export const questionsFeedback: FeedbackQuestion[] = [
   },
   {
     id: 17,
-    question: 'Politically speaking, how do you view yourself on Economics?',
+    question: 'Politically speaking, how do you view yourself on economics?',
     questionType: 'smallSelection',
     answers: [
       {
@@ -761,7 +761,7 @@ export const questionsFeedback: FeedbackQuestion[] = [
   },
   {
     id: 18,
-    question: 'Politically speaking, how do you view yourself on Authority?',
+    question: 'Politically speaking, how do you view yourself on authority?',
     questionType: 'smallSelection',
     answers: [
       {

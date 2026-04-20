@@ -129,8 +129,8 @@ export default function ResultsPage() {
 
       ctx.font = '300 30px Montserrat'
       ctx.fillStyle = '#c7d5ff'
-      ctx.fillText('sexvalues.github.io', 780, 60)
-      ctx.fillText('v0.3 (broken, still)', 780, 90)
+      ctx.fillText('kingironman.dev', 780, 60)
+      ctx.fillText('SexValues legacy', 780, 90)
       ctx.textAlign = 'center'
 
       y = 163
@@ -151,12 +151,14 @@ export default function ResultsPage() {
   return (
     <PageShell>
       <p className="text-center text-base">
-        🥺 pls fund my{' '}
-        <a href="https://ko-fi.com/sunkdatadiver" className="underline">
-          caffeine habit
+        Support ongoing development on{' '}
+        <a
+          href="https://github.com/KingIronMan2011/sexvalues"
+          className="underline"
+        >
+          GitHub
         </a>
       </p>
-      <p className="text-center text-base">👉👈</p>
       <h2 className="heading mt-2 text-center">Results</h2>
       <canvas
         ref={canvasRef}
