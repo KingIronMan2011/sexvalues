@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
@@ -66,10 +66,6 @@ export default function QuizPage() {
     ? localization.glossary[activeGlossaryKey]
     : undefined
 
-  useEffect(() => {
-    setActiveGlossaryKey(null)
-  }, [questionIndex])
-
   const goResults = (allAnswers: QuizAnswers) => {
     const percentages = calculatePercentages(allAnswers, questionsObject)
     sessionStorage.setItem('answers', JSON.stringify(allAnswers))
@@ -83,6 +79,7 @@ export default function QuizPage() {
   }
 
   const nextQuestion = (value: QuizAnswerValue) => {
+    setActiveGlossaryKey(null)
     const id = questionsOrder[questionIndex]
     const nextAnswers: QuizAnswers = { ...answers, [id]: value }
     setAnswers(nextAnswers)
@@ -98,6 +95,7 @@ export default function QuizPage() {
   const prevQuestion = () => {
     if (questionIndex === 0) return
 
+    setActiveGlossaryKey(null)
     const prevIndex = questionIndex - 1
     const id = questionsOrder[prevIndex]
     const nextAnswers = { ...answers }
