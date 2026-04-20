@@ -110,14 +110,14 @@ export default function QuizPage() {
     return parts.map((part, index) => {
       const match = part.match(/^\{\{([^}]+)\}\}$/)
       if (!match) {
-        return <span key={`text-${index}`}>{part}</span>
+        return <span key={`text-${currentQuestionId}-${index}-${part}`}>{part}</span>
       }
 
       const glossaryKey = match[1]
       const glossaryEntry = localization.glossary[glossaryKey]
 
       if (!glossaryEntry) {
-        return <span key={`unknown-${index}`}>{part}</span>
+        return <span key={`unknown-${currentQuestionId}-${index}`}>{glossaryKey}</span>
       }
 
       return (
@@ -136,6 +136,14 @@ export default function QuizPage() {
         </button>
       )
     })
+  }
+
+  if (!currentQuestion) {
+    return (
+      <PageShell>
+        <p className="question-card">{t('quiz.unavailable', 'Question unavailable.')}</p>
+      </PageShell>
+    )
   }
 
   return (
