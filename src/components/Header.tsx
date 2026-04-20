@@ -7,7 +7,7 @@ type HeaderProps = {
 }
 
 export default function Header({ theme, onToggleTheme }: HeaderProps) {
-  const { i18n } = useTranslation()
+  const { i18n, t } = useTranslation()
 
   const currentLanguage = i18n.resolvedLanguage?.split('-')[0] ?? 'en'
 
@@ -18,24 +18,30 @@ export default function Header({ theme, onToggleTheme }: HeaderProps) {
         target="_blank"
         rel="noreferrer"
         className="header-icon-button"
-        aria-label="View source on GitHub"
+        aria-label={t('header.viewSource')}
       >
         <FaGithub size={20} />
       </a>
 
       <div className="site-header-controls">
         <label className="header-control">
-          Language
+          {t('header.language')}
           <select
             className="selection m-0"
             value={currentLanguage}
             onChange={(event) => void i18n.changeLanguage(event.target.value)}
           >
-            <option value="en">English</option>
+            <option value="de">{t('header.languages.de')}</option>
+            <option value="en">{t('header.languages.en')}</option>
+            <option value="it">{t('header.languages.it')}</option>
+            <option value="es">{t('header.languages.es')}</option>
+            <option value="fr">{t('header.languages.fr')}</option>
           </select>
         </label>
         <button className="small-button" onClick={onToggleTheme}>
-          {theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          {theme === 'dark'
+            ? t('header.switchToLight')
+            : t('header.switchToDark')}
         </button>
       </div>
     </header>

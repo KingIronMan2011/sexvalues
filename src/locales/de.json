@@ -1,0 +1,101 @@
+{
+  "app": { "name": "SexValues", "legacy": "SexValues Legacy" },
+  "header": {
+    "viewSource": "Quellcode auf GitHub ansehen",
+    "language": "Sprache",
+    "switchToLight": "Zum hellen Modus wechseln",
+    "switchToDark": "Zum dunklen Modus wechseln",
+    "languages": { "en": "Englisch", "de": "Deutsch", "it": "Italienisch", "es": "Spanisch", "fr": "Französisch" }
+  },
+  "footer": { "privacy": "Datenschutzerklärung", "terms": "Nutzungsbedingungen" },
+  "cookie": {
+    "message": "Wir verwenden Google Analytics, um die Website zu verbessern. Sie können Analyse-Cookies akzeptieren oder ablehnen.",
+    "accept": "Akzeptieren",
+    "decline": "Ablehnen"
+  },
+  "home": {
+    "disclaimerTitle": "HINWEIS",
+    "disclaimerText": "Dieser Test ist noch eine Legacy-Version und wird im Laufe der Zeit verbessert. Derzeit enthält er einen demografischen Fragebogen und umformulierte Fragen. Bei Fragen finden Sie unten Kontaktinformationen.",
+    "axes": { "attraction": "ANZIEHUNG", "sexDrive": "SEXTRIEB", "dominance": "DOMINANZ", "deviance": "ABWEICHUNG", "affection": "ZUNEIGUNG" },
+    "startTest": "Test starten",
+    "whatIsTitle": "Was ist SexValues?",
+    "whatIsParagraph1": "SexValues ist ein Quiz auf Basis einer modifizierten Version von",
+    "whatIsParagraph2": ", das versucht, Ihre Sexualität abzubilden. Ihnen wird eine Aussage gezeigt und Sie antworten mit Ihrer Meinung dazu, von",
+    "whatIsParagraph3": "bis",
+    "whatIsParagraph4": ". Jede Antwort beeinflusst Ihre Werte leicht. Am Ende werden Ihre Antworten mit den maximal möglichen Werten verglichen und als Prozentsatz angezeigt. Antworten Sie ehrlich!",
+    "stronglyAgree": "Stimme voll zu",
+    "stronglyDisagree": "Stimme überhaupt nicht zu",
+    "questionCount": "Der Test enthält {{count}} Fragen.",
+    "valuesTitle": "Was sind die acht Werte?",
+    "valuesIntro": "Es gibt fünf Achsen, und jeder sind zwei gegensätzliche Werte zugeordnet.",
+    "contact": "Kontakt",
+    "privacy": "Datenschutz",
+    "privacyText": "Diese Seite kann Google Analytics verwenden, wenn Sie Analyse-Cookies akzeptieren. Am Ende des Tests können Sie außerdem allgemeine demografische Angaben machen.",
+    "licensing": "Lizenz",
+    "licensingText": "SexValues steht unter der MIT-Lizenz, die Nutzung, Kopieren, Ändern, Zusammenführen, Veröffentlichen, Verteilen, Unterlizenzieren und/oder Verkaufen von Kopien der Software erlaubt.",
+    "twitter": "Twitter",
+    "blurb": {
+      "masculine": { "title": "MASKULIN", "text": "Höhere maskuline Werte bedeuten stärkere Anziehung zu Männlichkeit oder Männern." },
+      "feminine": { "title": "FEMININ", "text": "Höhere feminine Werte bedeuten stärkere Anziehung zu Weiblichkeit oder Frauen." },
+      "hypersexual": { "title": "HYPERSEXUELL", "text": "Höhere hypersexuelle Werte deuten auf sehr häufige oder plötzlich erhöhte Libido hin." },
+      "hyposexual": { "title": "HYPOSEXUELL", "text": "Höhere hyposexuelle Werte zeichnen sich durch wenig oder fehlende sexuelle Fantasien und geringes sexuelles Verlangen aus." },
+      "dominant": { "title": "DOMINANT", "text": "Höhere dominante Werte bedeuten oft, gern Macht und Einfluss über andere zu haben." },
+      "submissive": { "title": "SUBMISSIV", "text": "Höhere submissive Werte bedeuten oft, gern dominiert und angeleitet zu werden." },
+      "deviant": { "title": "DEVIANT", "text": "Höhere deviante Werte deuten auf viele (extremere) Fetische und Kinks hin." },
+      "pure": { "title": "REIN", "text": "Höhere reine Werte deuten auf eine Vorliebe für klassische Erfahrungen hin." },
+      "affective": { "title": "AFFEKTIV", "text": "Höhere affektive Werte bedeuten oft, nur mit Personen sexuell zu sein, für die romantische Gefühle bestehen." },
+      "hedonist": { "title": "HEDONISTISCH", "text": "Höhere hedonistische Werte bedeuten oft einen offeneren Umgang mit der eigenen Sexualität." }
+    }
+  },
+  "instructions": {
+    "title": "Anleitung",
+    "text": "Ihnen wird eine Reihe von Aussagen angezeigt. Klicken Sie jeweils auf die Schaltfläche, die Ihrer Meinung entspricht.",
+    "gotIt": "Verstanden!",
+    "neverMind": "Warte, doch nicht!"
+  },
+  "quiz": {
+    "progress": "Frage {{current}} von {{total}}",
+    "answers": { "stronglyAgree": "Stimme voll zu", "agree": "Stimme zu", "neutral": "Neutral", "disagree": "Stimme nicht zu", "stronglyDisagree": "Stimme überhaupt nicht zu", "unknown": "Weiß ich nicht/Verstehe ich nicht" },
+    "back": "Zurück"
+  },
+  "results": {
+    "supportText": "Unterstütze die weitere Entwicklung auf",
+    "title": "Ergebnisse",
+    "back": "Zurück",
+    "axisNames": { "attract": "Anziehung", "drive": "Sextrieb", "dominant": "Dominanzachse", "deviance": "Abweichungsachse", "affect": "Zuneigungsachse" },
+    "axisArrays": {
+      "attract": ["Feminin", "Eher feminin", "Neutral", "Eher maskulin", "Maskulin"],
+      "drive": ["Hyposexuell", "Niedrig", "Mittel", "Hoch", "Hypersexuell"],
+      "dominant": ["Submissiv", "Switch", "Dominant"],
+      "deviance": ["Puritanisch", "Vanilla", "Ausgewogen", "Kinky", "Deviant"],
+      "affect": ["Hedonistisch", "Offen", "Neutral", "Affektiv", "Exklusiv"]
+    }
+  },
+  "feedback": {
+    "allDone": "Fertig!",
+    "seriousQuestion": "Haben Sie diesen Test ernsthaft (oder zumindest nicht ironisch) ausgefüllt?",
+    "helpImprove": "Ja, und ich möchte helfen, ihn zu verbessern (mit 18 Fragen)",
+    "justResultsYes": "Ja, aber bring mich nur zu den Ergebnissen",
+    "justResultsNo": "Nein, bring mich einfach zu den Ergebnissen",
+    "doQuiz": "Quiz starten!",
+    "progress": "Frage {{current}} von {{total}}",
+    "choose": "Zum Auswählen klicken",
+    "go": "Los!",
+    "next": "Weiter!",
+    "refuse": "Antwort verweigern",
+    "refuseUnknown": "Verweigern / Weiß nicht",
+    "back": "Zurück"
+  },
+  "privacyPage": {
+    "title": "Datenschutzerklärung",
+    "p1": "Wir erfassen nur die minimal notwendigen Daten, um SexValues zu betreiben und zu verbessern. Wenn Sie Analyse-Cookies akzeptieren, kann Google Analytics anonymisierte Nutzungsdaten erfassen. Wenn Sie ablehnen, wird das Tracking deaktiviert.",
+    "p2": "Optionale Antworten aus dem Fragebogen nach dem Quiz werden zur Verbesserung des Tests verwendet. Bitte teilen Sie in Freitextfeldern keine sensiblen persönlichen Informationen.",
+    "p3": "Für Datenschutzanfragen kontaktieren Sie"
+  },
+  "termsPage": {
+    "title": "Nutzungsbedingungen",
+    "p1": "SexValues wird nur zu Informations- und Unterhaltungszwecken bereitgestellt. Ergebnisse sind keine medizinische, rechtliche oder psychologische Beratung.",
+    "p2": "Durch die Nutzung dieser Website stimmen Sie zu, den Dienst nicht zu missbrauchen, nicht zu stören und keine rechtswidrigen Inhalte zu übermitteln.",
+    "p3": "Die Software wird unter der MIT-Lizenz ohne jegliche Gewährleistung bereitgestellt."
+  }
+}

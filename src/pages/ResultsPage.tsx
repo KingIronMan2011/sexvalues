@@ -1,14 +1,9 @@
 import { useEffect, useMemo, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import PageShell from '../components/PageShell'
-import {
-  axisArrays,
-  axisNames,
-  labels,
-  valueColors,
-  values,
-} from '../data/resultsData'
+import { labels, valueColors, values } from '../data/resultsData'
 import type { AxisLabel, Scores, ValueName } from '../types'
 
 const getLabel = (val: number, ary: string[]): string =>
@@ -18,6 +13,37 @@ export default function ResultsPage() {
   const navigate = useNavigate()
   const location = useLocation()
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const { i18n, t } = useTranslation()
+  const axisNames = useMemo<Record<AxisLabel, string>>(
+    () => ({
+      attract: t('results.axisNames.attract'),
+      drive: t('results.axisNames.drive'),
+      dominant: t('results.axisNames.dominant'),
+      deviance: t('results.axisNames.deviance'),
+      affect: t('results.axisNames.affect'),
+    }),
+    [i18n.resolvedLanguage, t],
+  )
+  const axisArrays = useMemo<Record<AxisLabel, string[]>>(
+    () => ({
+      attract: t('results.axisArrays.attract', {
+        returnObjects: true,
+      }) as unknown as string[],
+      drive: t('results.axisArrays.drive', {
+        returnObjects: true,
+      }) as unknown as string[],
+      dominant: t('results.axisArrays.dominant', {
+        returnObjects: true,
+      }) as unknown as string[],
+      deviance: t('results.axisArrays.deviance', {
+        returnObjects: true,
+      }) as unknown as string[],
+      affect: t('results.axisArrays.affect', {
+        returnObjects: true,
+      }) as unknown as string[],
+    }),
+    [i18n.resolvedLanguage, t],
+  )
 
   const scores = useMemo<Scores>(() => {
     const params = new URLSearchParams(location.search)
@@ -110,7 +136,7 @@ export default function ResultsPage() {
       ctx.fillStyle = '#f3f6ff'
       ctx.font = '700 80px Montserrat'
       ctx.textAlign = 'left'
-      ctx.fillText('SexValues', 20, 90)
+      ctx.fillText(t('app.name'), 20, 90)
       ctx.font = '400 50px Montserrat'
 
       y = 227.5
@@ -130,7 +156,7 @@ export default function ResultsPage() {
       ctx.font = '300 30px Montserrat'
       ctx.fillStyle = '#c7d5ff'
       ctx.fillText('kingironman.dev', 780, 60)
-      ctx.fillText('SexValues legacy', 780, 90)
+      ctx.fillText(t('app.legacy'), 780, 90)
       ctx.textAlign = 'center'
 
       y = 163
@@ -146,12 +172,12 @@ export default function ResultsPage() {
         y += 120
       })
     })
-  }, [scores])
+  }, [axisArrays, axisNames, scores, t])
 
   return (
     <PageShell>
       <p className="text-center text-base">
-        Support ongoing development on{' '}
+        {t('results.supportText')}{' '}
         <a
           href="https://github.com/KingIronMan2011/sexvalues"
           className="underline"
@@ -159,7 +185,7 @@ export default function ResultsPage() {
           GitHub
         </a>
       </p>
-      <h2 className="heading mt-2 text-center">Results</h2>
+      <h2 className="heading mt-2 text-center">{t('results.title')}</h2>
       <canvas
         ref={canvasRef}
         id="banner"
@@ -168,7 +194,7 @@ export default function ResultsPage() {
         style={{ fontFamily: 'Montserrat' }}
       />
       <button className="main-button mt-4" onClick={() => navigate('/')}>
-        Back
+        {t('results.back')}
       </button>
     </PageShell>
   )

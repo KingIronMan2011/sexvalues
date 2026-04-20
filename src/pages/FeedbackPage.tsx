@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import PageShell from '../components/PageShell'
@@ -37,6 +38,7 @@ const parseStoredJson = <T,>(key: string, fallback: T): T => {
 export default function FeedbackPage() {
   const navigate = useNavigate()
   const location = useLocation()
+  const { t } = useTranslation()
   const [started, setStarted] = useState(false)
   const [answers, setAnswers] = useState<FeedbackAnswers>({})
   const [questionIndex, setQuestionIndex] = useState(0)
@@ -148,7 +150,7 @@ export default function FeedbackPage() {
             onChange={(event) => setSelectValue(event.target.value)}
           >
             <option value="" disabled>
-              Click to choose
+              {t('feedback.choose')}
             </option>
             {Object.entries(current.answers).map(([value, name]) => (
               <option key={value} value={value}>
@@ -161,10 +163,10 @@ export default function FeedbackPage() {
             onClick={() => nextQuestion(selectValue)}
             disabled={!selectValue}
           >
-            Go!
+            {t('feedback.go')}
           </button>
           <button className="main-button" onClick={() => nextQuestion(null)}>
-            Refuse to Answer
+            {t('feedback.refuse')}
           </button>
         </>
       )
@@ -190,10 +192,10 @@ export default function FeedbackPage() {
             onClick={() => nextQuestion(numberValue)}
             disabled={!valid}
           >
-            Next!
+            {t('feedback.next')}
           </button>
           <button className="main-button" onClick={() => nextQuestion(null)}>
-            Refuse to Answer
+            {t('feedback.refuse')}
           </button>
         </>
       )
@@ -212,10 +214,10 @@ export default function FeedbackPage() {
           onClick={() => nextQuestion(textValue)}
           disabled={!textValue.length}
         >
-          Next!
+          {t('feedback.next')}
         </button>
         <button className="main-button" onClick={() => nextQuestion(null)}>
-          Refuse / Don&apos;t know
+          {t('feedback.refuseUnknown')}
         </button>
       </>
     )
@@ -224,30 +226,28 @@ export default function FeedbackPage() {
   if (!started) {
     return (
       <PageShell>
-        <h2 className="heading text-center">All done!</h2>
-        <p className="question-card">
-          Did you complete this test in a serious (or at least unironic) manner?
-        </p>
+        <h2 className="heading text-center">{t('feedback.allDone')}</h2>
+        <p className="question-card">{t('feedback.seriousQuestion')}</p>
         <div className="button-stack">
           {hasQuizAnswers && (
             <button
               className="main-button stronglyAgree"
               onClick={() => setStarted(true)}
             >
-              Yes, and I&apos;d like to help improve it (with 18 questions)
+              {t('feedback.helpImprove')}
             </button>
           )}
           {hasQuizAnswers && (
             <button className="main-button agree" onClick={() => pass(true)}>
-              Yes, but just get me to the results
+              {t('feedback.justResultsYes')}
             </button>
           )}
           <button className="main-button" onClick={() => pass(false)}>
-            Nah, just get me to the results
+            {t('feedback.justResultsNo')}
           </button>
           {!hasQuizAnswers && (
             <button className="main-button agree" onClick={() => navigate('/quiz')}>
-              Do the quiz!
+              {t('feedback.doQuiz')}
             </button>
           )}
         </div>
@@ -258,7 +258,10 @@ export default function FeedbackPage() {
   return (
     <PageShell>
       <h2 className="heading text-center">
-        Question {questionIndex + 1} of {questionsFeedback.length}
+        {t('feedback.progress', {
+          current: questionIndex + 1,
+          total: questionsFeedback.length,
+        })}
       </h2>
       <p className="question-card">{current?.question}</p>
       <div className="button-stack">{renderQuestionInput()}</div>
@@ -267,7 +270,7 @@ export default function FeedbackPage() {
         onClick={prevQuestion}
         disabled={questionIndex === 0}
       >
-        Back
+        {t('feedback.back')}
       </button>
     </PageShell>
   )
