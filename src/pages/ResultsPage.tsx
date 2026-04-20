@@ -69,7 +69,7 @@ export default function ResultsPage() {
         HTMLImageElement
       >
 
-      ctx.fillStyle = '#EEEEEE'
+      ctx.fillStyle = '#0f1631'
       ctx.fillRect(0, 0, 800, 750)
 
       let y = 160
@@ -86,7 +86,7 @@ export default function ResultsPage() {
         y += 120
       })
 
-      ctx.fillStyle = '#222222'
+      ctx.fillStyle = '#1e274b'
       y = 170
       values.left.forEach(() => {
         ctx.fillRect(120, y, 560, 80)
@@ -107,7 +107,7 @@ export default function ResultsPage() {
         y += 120
       })
 
-      ctx.fillStyle = '#222222'
+      ctx.fillStyle = '#f3f6ff'
       ctx.font = '700 80px Montserrat'
       ctx.textAlign = 'left'
       ctx.fillText('SexValues', 20, 90)
@@ -128,6 +128,7 @@ export default function ResultsPage() {
       })
 
       ctx.font = '300 30px Montserrat'
+      ctx.fillStyle = '#c7d5ff'
       ctx.fillText('sexvalues.github.io', 780, 60)
       ctx.fillText('v0.3 (broken, still)', 780, 90)
       ctx.textAlign = 'center'
@@ -135,6 +136,7 @@ export default function ResultsPage() {
       y = 163
       values.left.forEach((name, idx) => {
         const labelKey = labels[idx] as AxisLabel
+        ctx.fillStyle = '#e4ebff'
         ctx.font = '300 30px Montserrat'
         ctx.fillText(
           `${axisNames[labelKey]}: ${getLabel(scores[name], axisArrays[labelKey])}`,
@@ -148,14 +150,14 @@ export default function ResultsPage() {
 
   return (
     <PageShell>
-      <p className="text-center text-xl text-[#444444]">
+      <p className="text-center text-base">
         🥺 pls fund my{' '}
         <a href="https://ko-fi.com/sunkdatadiver" className="underline">
           caffeine habit
         </a>
       </p>
-      <p className="text-center text-xl text-[#444444]">👉👈</p>
-      <h1 className="title">Results</h1>
+      <p className="text-center text-base">👉👈</p>
+      <h2 className="heading mt-2 text-center">Results</h2>
       <canvas
         ref={canvasRef}
         id="banner"
@@ -163,7 +165,7 @@ export default function ResultsPage() {
         height="750"
         style={{ fontFamily: 'Montserrat' }}
       />
-      <button className="main-button" onClick={() => navigate('/')}>
+      <button className="main-button mt-4" onClick={() => navigate('/')}>
         Back
       </button>
     </PageShell>

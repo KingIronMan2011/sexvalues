@@ -8,19 +8,18 @@ export default function InstructionsPage() {
   return (
     <PageShell>
       <h2 className="heading text-center">Instructions</h2>
-      <p className="question-card text-3xl">
+      <p className="question-card">
         You will be presented with a series of statements. For each one, click
         the button with your opinion on it.
       </p>
-      <button className="main-button" onClick={() => navigate('/quiz')}>
-        Got it!
-      </button>
-      <button
-        className="main-button !bg-[#f44336] hover:!bg-[#d6271a]"
-        onClick={() => navigate('/')}
-      >
-        Wait, nevermind!
-      </button>
+      <div className="button-stack">
+        <button className="main-button" onClick={() => navigate('/quiz')}>
+          Got it!
+        </button>
+        <button className="main-button disagree" onClick={() => navigate('/')}>
+          Wait, nevermind!
+        </button>
+      </div>
     </PageShell>
   )
 }

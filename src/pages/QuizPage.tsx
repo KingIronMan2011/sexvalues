@@ -90,15 +90,17 @@ export default function QuizPage() {
       </h2>
       <p className="question-card">{currentQuestion?.question}</p>
 
-      {scoreButtons.map((button) => (
-        <button
-          key={button.label}
-          className={`main-button ${button.className}`}
-          onClick={() => nextQuestion(button.value)}
-        >
-          {button.label}
-        </button>
-      ))}
+      <div className="button-stack">
+        {scoreButtons.map((button) => (
+          <button
+            key={button.label}
+            className={`main-button ${button.className}`}
+            onClick={() => nextQuestion(button.value)}
+          >
+            {button.label}
+          </button>
+        ))}
+      </div>
 
       <button
         className={questionIndex === 0 ? 'small-button-off' : 'small-button'}

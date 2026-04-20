@@ -9,10 +9,10 @@ export default function PageShell({
   title = 'SexValues',
 }: PageShellProps) {
   return (
-    <div className="min-h-screen bg-[#bbbbbb] px-0 py-0">
-      <div className="mx-auto min-h-screen w-[80%] border-x-[20px] border-[#eeeeee] bg-[#dddddd] p-8">
+    <div className="page-shell">
+      <div className="page-container">
         <h1 className="title">{title}</h1>
-        <hr className="my-2 border-[#222222]" />
+        <hr className="my-3 border-white/10" />
         {children}
       </div>
     </div>

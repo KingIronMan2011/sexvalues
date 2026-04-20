@@ -225,33 +225,32 @@ export default function FeedbackPage() {
     return (
       <PageShell>
         <h2 className="heading text-center">All done!</h2>
-        <p className="question-card text-3xl">
+        <p className="question-card">
           Did you complete this test in a serious (or at least unironic) manner?
         </p>
-        {hasQuizAnswers && (
-          <button
-            className="main-button stronglyAgree"
-            onClick={() => setStarted(true)}
-          >
-            Yes, and I&apos;d like to help improve it (with 18 questions)
+        <div className="button-stack">
+          {hasQuizAnswers && (
+            <button
+              className="main-button stronglyAgree"
+              onClick={() => setStarted(true)}
+            >
+              Yes, and I&apos;d like to help improve it (with 18 questions)
+            </button>
+          )}
+          {hasQuizAnswers && (
+            <button className="main-button agree" onClick={() => pass(true)}>
+              Yes, but just get me to the results
+            </button>
+          )}
+          <button className="main-button" onClick={() => pass(false)}>
+            Nah, just get me to the results
           </button>
-        )}
-        {hasQuizAnswers && (
-          <button className="main-button agree" onClick={() => pass(true)}>
-            Yes, but just get me to the results
-          </button>
-        )}
-        <button className="main-button" onClick={() => pass(false)}>
-          Nah, just get me to the results
-        </button>
-        {!hasQuizAnswers && (
-          <button
-            className="main-button agree"
-            onClick={() => navigate('/quiz')}
-          >
-            Do the quiz!
-          </button>
-        )}
+          {!hasQuizAnswers && (
+            <button className="main-button agree" onClick={() => navigate('/quiz')}>
+              Do the quiz!
+            </button>
+          )}
+        </div>
       </PageShell>
     )
   }
@@ -262,7 +261,7 @@ export default function FeedbackPage() {
         Question {questionIndex + 1} of {questionsFeedback.length}
       </h2>
       <p className="question-card">{current?.question}</p>
-      {renderQuestionInput()}
+      <div className="button-stack">{renderQuestionInput()}</div>
       <button
         className={questionIndex === 0 ? 'small-button-off' : 'small-button'}
         onClick={prevQuestion}
