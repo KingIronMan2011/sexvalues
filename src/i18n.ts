@@ -7,6 +7,8 @@ import es from './locales/es.json'
 import fr from './locales/fr.json'
 import it from './locales/it.json'
 
+export const supportedLanguages = ['de', 'en', 'it', 'es', 'fr'] as const
+
 void i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -29,7 +31,7 @@ void i18n
       },
     },
     fallbackLng: 'en',
-    supportedLngs: ['de', 'en', 'it', 'es', 'fr'],
+    supportedLngs: [...supportedLanguages],
     interpolation: {
       escapeValue: false,
     },

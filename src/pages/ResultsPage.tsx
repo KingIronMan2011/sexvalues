@@ -13,7 +13,7 @@ export default function ResultsPage() {
   const navigate = useNavigate()
   const location = useLocation()
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
-  const { i18n, t } = useTranslation()
+  const { t } = useTranslation()
   const axisNames = useMemo<Record<AxisLabel, string>>(
     () => ({
       attract: t('results.axisNames.attract'),
@@ -22,7 +22,7 @@ export default function ResultsPage() {
       deviance: t('results.axisNames.deviance'),
       affect: t('results.axisNames.affect'),
     }),
-    [i18n.resolvedLanguage, t],
+    [t],
   )
   const axisArrays = useMemo<Record<AxisLabel, string[]>>(
     () => ({
@@ -42,7 +42,7 @@ export default function ResultsPage() {
         returnObjects: true,
       }) as unknown as string[],
     }),
-    [i18n.resolvedLanguage, t],
+    [t],
   )
 
   const scores = useMemo<Scores>(() => {

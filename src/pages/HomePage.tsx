@@ -11,9 +11,11 @@ const values = [
   ['feminine', 'hyposexual', 'submissive', 'pure', 'hedonism'],
 ] as const
 
+type AxisKey = 'attraction' | 'sexDrive' | 'dominance' | 'deviance' | 'affection'
+
 type BlurbEntry = {
   left: [string, string, string]
-  axisKey: 'attraction' | 'sexDrive' | 'dominance' | 'deviance' | 'affection'
+  axisKey: AxisKey
   right: [string, string, string]
 }
 
@@ -57,7 +59,7 @@ export default function HomePage() {
   const navigate = useNavigate()
   const { t } = useTranslation()
 
-  const axisItems: Array<'attraction' | 'sexDrive' | 'dominance' | 'deviance' | 'affection'> = [
+  const axisItems: AxisKey[] = [
     'attraction',
     'sexDrive',
     'dominance',

@@ -32,22 +32,25 @@ export default function QuizPage() {
   )
   const [answers, setAnswers] = useState<QuizAnswers>({})
   const [questionIndex, setQuestionIndex] = useState(0)
-  const scoreButtons: ScoreButton[] = [
-    {
-      label: t('quiz.answers.stronglyAgree'),
-      value: 1,
-      className: 'stronglyAgree',
-    },
-    { label: t('quiz.answers.agree'), value: 0.5, className: 'agree' },
-    { label: t('quiz.answers.neutral'), value: 0, className: 'neutral' },
-    { label: t('quiz.answers.disagree'), value: -0.5, className: 'disagree' },
-    {
-      label: t('quiz.answers.stronglyDisagree'),
-      value: -1,
-      className: 'stronglyDisagree',
-    },
-    { label: t('quiz.answers.unknown'), value: null, className: '' },
-  ]
+  const scoreButtons = useMemo<ScoreButton[]>(
+    () => [
+      {
+        label: t('quiz.answers.stronglyAgree'),
+        value: 1,
+        className: 'stronglyAgree',
+      },
+      { label: t('quiz.answers.agree'), value: 0.5, className: 'agree' },
+      { label: t('quiz.answers.neutral'), value: 0, className: 'neutral' },
+      { label: t('quiz.answers.disagree'), value: -0.5, className: 'disagree' },
+      {
+        label: t('quiz.answers.stronglyDisagree'),
+        value: -1,
+        className: 'stronglyDisagree',
+      },
+      { label: t('quiz.answers.unknown'), value: null, className: '' },
+    ],
+    [t],
+  )
 
   const currentQuestion = questionsObject[questionsOrder[questionIndex]]
 

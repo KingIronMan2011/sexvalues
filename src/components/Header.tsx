@@ -1,6 +1,8 @@
 import { FaGithub } from 'react-icons/fa6'
 import { useTranslation } from 'react-i18next'
 
+import { supportedLanguages } from '../i18n'
+
 type HeaderProps = {
   theme: 'dark' | 'light'
   onToggleTheme: () => void
@@ -31,11 +33,11 @@ export default function Header({ theme, onToggleTheme }: HeaderProps) {
             value={currentLanguage}
             onChange={(event) => void i18n.changeLanguage(event.target.value)}
           >
-            <option value="de">{t('header.languages.de')}</option>
-            <option value="en">{t('header.languages.en')}</option>
-            <option value="it">{t('header.languages.it')}</option>
-            <option value="es">{t('header.languages.es')}</option>
-            <option value="fr">{t('header.languages.fr')}</option>
+            {supportedLanguages.map((language) => (
+              <option key={language} value={language}>
+                {t(`header.languages.${language}`)}
+              </option>
+            ))}
           </select>
         </label>
         <button className="small-button" onClick={onToggleTheme}>
