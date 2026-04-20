@@ -110,13 +110,16 @@ export default function QuizPage() {
     return parts.map((part, index) => {
       const match = part.match(/^\{\{([^}]+)\}\}$/)
       if (!match) {
-        return <span key={`text-${currentQuestionId}-${index}-${part}`}>{part}</span>
+        return <span key={`text-${currentQuestionId}-${index}`}>{part}</span>
       }
 
       const glossaryKey = match[1]
       const glossaryEntry = localization.glossary[glossaryKey]
 
       if (!glossaryEntry) {
+        if (import.meta.env.DEV) {
+          console.warn(`Missing glossary entry for key: ${glossaryKey}`)
+        }
         return <span key={`unknown-${currentQuestionId}-${index}`}>{glossaryKey}</span>
       }
 
