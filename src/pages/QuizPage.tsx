@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import PageShell from '../components/PageShell'
+import { getQuizLocalization } from '../data/questionsLocalized'
 import { questionsLegacy } from '../data/questionsLegacy'
 import { calculatePercentages, shuffleArray } from '../lib/quiz'
 import type { LegacyQuestion, QuizAnswerValue, QuizAnswers } from '../types'
@@ -15,7 +16,7 @@ type ScoreButton = {
 
 export default function QuizPage() {
   const navigate = useNavigate()
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const questionsObject = useMemo<Record<string, LegacyQuestion>>(
     () =>
       questionsLegacy.reduce<Record<string, LegacyQuestion>>(
@@ -32,6 +33,11 @@ export default function QuizPage() {
   )
   const [answers, setAnswers] = useState<QuizAnswers>({})
   const [questionIndex, setQuestionIndex] = useState(0)
+  const [activeGlossaryKey, setActiveGlossaryKey] = useState<string | null>(null)
+  const localization = useMemo(
+    () => getQuizLocalization(i18n.resolvedLanguage),
+    [i18n.resolvedLanguage],
+  )
   const scoreButtons = useMemo<ScoreButton[]>(
     () => [
       {
@@ -53,6 +59,12 @@ export default function QuizPage() {
   )
 
   const currentQuestion = questionsObject[questionsOrder[questionIndex]]
+  const currentQuestionId = currentQuestion ? String(currentQuestion.id) : ''
+  const questionTemplate =
+    localization.questions[currentQuestionId] ?? currentQuestion?.question ?? ''
+  const activeGlossary = activeGlossaryKey
+    ? localization.glossary[activeGlossaryKey]
+    : undefined
 
   const goResults = (allAnswers: QuizAnswers) => {
     const percentages = calculatePercentages(allAnswers, questionsObject)
@@ -67,6 +79,7 @@ export default function QuizPage() {
   }
 
   const nextQuestion = (value: QuizAnswerValue) => {
+    setActiveGlossaryKey(null)
     const id = questionsOrder[questionIndex]
     const nextAnswers: QuizAnswers = { ...answers, [id]: value }
     setAnswers(nextAnswers)
@@ -82,12 +95,58 @@ export default function QuizPage() {
   const prevQuestion = () => {
     if (questionIndex === 0) return
 
+    setActiveGlossaryKey(null)
     const prevIndex = questionIndex - 1
     const id = questionsOrder[prevIndex]
     const nextAnswers = { ...answers }
     delete nextAnswers[id]
     setAnswers(nextAnswers)
     setQuestionIndex(prevIndex)
+  }
+
+  const renderQuestionWithGlossary = (question: string) => {
+    const parts = question.split(/(\{\{[^}]+\}\})/g)
+
+    return parts.map((part, index) => {
+      const match = part.match(/^\{\{([^}]+)\}\}$/)
+      if (!match) {
+        return <span key={`text-${currentQuestionId}-${index}`}>{part}</span>
+      }
+
+      const glossaryKey = match[1]
+      const glossaryEntry = localization.glossary[glossaryKey]
+
+      if (!glossaryEntry) {
+        if (import.meta.env.DEV) {
+          console.warn(`Missing glossary entry for key: ${glossaryKey}`)
+        }
+        return <span key={`unknown-${currentQuestionId}-${index}`}>{glossaryKey}</span>
+      }
+
+      return (
+        <button
+          key={`term-${glossaryKey}-${index}`}
+          className="question-term"
+          onClick={() =>
+            setActiveGlossaryKey((prev) =>
+              prev === glossaryKey ? null : glossaryKey,
+            )
+          }
+          type="button"
+          aria-pressed={activeGlossaryKey === glossaryKey}
+        >
+          {glossaryEntry.label}
+        </button>
+      )
+    })
+  }
+
+  if (!currentQuestion) {
+    return (
+      <PageShell>
+        <p className="question-card">{t('quiz.unavailable', 'Question unavailable.')}</p>
+      </PageShell>
+    )
   }
 
   return (
@@ -98,7 +157,13 @@ export default function QuizPage() {
           total: questionsOrder.length,
         })}
       </h2>
-      <p className="question-card">{currentQuestion?.question}</p>
+      <p className="question-card">{renderQuestionWithGlossary(questionTemplate)}</p>
+      {activeGlossary ? (
+        <div className="glossary-popup" role="note" aria-live="polite">
+          <strong>{activeGlossary.label}</strong>
+          <p>{activeGlossary.description}</p>
+        </div>
+      ) : null}
 
       <div className="button-stack">
         {scoreButtons.map((button) => (
