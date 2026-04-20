@@ -18,6 +18,14 @@
   --text-main: #f7f8ff;
   --text-muted: #b7bfdc;
   --line: rgba(255, 255, 255, 0.14);
+  --link-color: #dce4ff;
+  --link-hover-color: #f4f7ff;
+  --control-bg: rgba(255, 255, 255, 0.08);
+  --control-bg-hover: rgba(255, 255, 255, 0.15);
+  --input-bg: rgba(255, 255, 255, 0.08);
+  --input-border: rgba(255, 255, 255, 0.18);
+  --axis-text: #d5ddff;
+  --cookie-bg: rgba(17, 22, 40, 0.96);
   --shadow: 0 24px 70px rgba(3, 6, 20, 0.55);
 }
 
@@ -32,6 +40,14 @@
   --text-main: #111936;
   --text-muted: #243253;
   --line: rgba(45, 62, 106, 0.2);
+  --link-color: #274ca8;
+  --link-hover-color: #163477;
+  --control-bg: rgba(34, 61, 124, 0.08);
+  --control-bg-hover: rgba(34, 61, 124, 0.16);
+  --input-bg: rgba(41, 66, 126, 0.07);
+  --input-border: rgba(43, 64, 114, 0.28);
+  --axis-text: #284073;
+  --cookie-bg: rgba(247, 251, 255, 0.98);
   --shadow: 0 20px 45px rgba(72, 93, 154, 0.2);
 }
 
@@ -61,12 +77,13 @@ body {
 }
 
 a {
-  color: #dce4ff;
-  text-decoration-color: rgba(220, 228, 255, 0.5);
+  color: var(--link-color);
+  text-decoration-color: color-mix(in srgb, var(--link-color) 50%, transparent);
 }
 
 a:hover {
-  text-decoration-color: rgba(220, 228, 255, 0.95);
+  color: var(--link-hover-color);
+  text-decoration-color: color-mix(in srgb, var(--link-hover-color) 88%, transparent);
 }
 
 p {
@@ -105,15 +122,23 @@ p {
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.6rem;
+  gap: 0.65rem;
 }
 
-.header-control {
+.header-control-group {
   display: flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.5rem;
+}
+
+.header-control-label {
   color: var(--text-muted);
   font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.language-dropdown {
+  position: relative;
 }
 
 .header-icon-button {
@@ -122,9 +147,70 @@ p {
   justify-content: center;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: var(--panel-soft);
+  background: var(--control-bg);
   color: var(--text-main);
   padding: 0.6rem;
+}
+
+.header-control-button {
+  min-height: 2.35rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--control-bg);
+  color: var(--text-main);
+  font-family: var(--font-montserrat);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.5rem 0.95rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-control-button:hover,
+.header-control-button:focus-visible {
+  background: var(--control-bg-hover);
+}
+
+.language-chevron {
+  transition: transform 0.16s ease;
+}
+
+.language-chevron.open {
+  transform: rotate(180deg);
+}
+
+.language-dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.45rem);
+  z-index: 30;
+  min-width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--cookie-bg);
+  box-shadow: var(--shadow);
+}
+
+.language-option {
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  text-align: left;
+  background: transparent;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  padding: 0.45rem 0.6rem;
+  cursor: pointer;
+}
+
+.language-option:hover,
+.language-option.active {
+  background: var(--control-bg);
 }
 
 .title {
@@ -239,13 +325,13 @@ p {
 }
 
 .small-button {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--control-bg);
   color: var(--text-main);
   cursor: pointer;
 }
 
 .small-button:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--control-bg-hover);
 }
 
 .small-button-off {
@@ -263,7 +349,7 @@ p {
 }
 
 .axis_name {
-  color: #d5ddff;
+  color: var(--axis-text);
   font-size: clamp(0.76rem, 0.35vw + 0.68rem, 0.9rem);
   font-family: var(--font-montserrat);
   font-weight: 700;
@@ -279,8 +365,8 @@ p {
 img.quadcolumn {
   width: 100%;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   padding: 0.42rem;
   transition:
     transform 0.18s ease,
@@ -297,10 +383,10 @@ img.quadcolumn:hover {
 .text_input {
   width: 100%;
   min-width: 0;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid var(--input-border);
   border-radius: 12px;
-  color: #eef2ff;
-  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  background: var(--input-bg);
   font-size: 1rem;
   padding: 0.8rem 0.95rem;
   margin: 0 0 0.65rem;
@@ -350,9 +436,10 @@ img.quadcolumn:hover {
   max-width: 760px;
   border-radius: 16px;
   border: 1px solid var(--line);
-  background: linear-gradient(180deg, var(--panel-strong), var(--panel));
+  background: var(--cookie-bg);
   box-shadow: var(--shadow);
   padding: 1rem;
+  backdrop-filter: blur(14px);
 }
 
 .cookie-banner-actions {
@@ -360,6 +447,84 @@ img.quadcolumn:hover {
   display: flex;
   gap: 0.55rem;
   justify-content: flex-end;
+}
+
+.results-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.results-card {
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: var(--panel-soft);
+  padding: 0.95rem;
+}
+
+.results-card-head {
+  display: grid;
+  grid-template-columns: 56px 1fr 56px;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.results-value-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  padding: 0.32rem;
+}
+
+.results-card-title-wrap {
+  text-align: center;
+}
+
+.results-axis-title {
+  color: var(--text-main);
+  font-family: var(--font-montserrat);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-size: 0.96rem;
+}
+
+.results-axis-label {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.results-pair {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.7rem;
+}
+
+.results-score-row {
+  display: grid;
+  gap: 0.32rem;
+}
+
+.results-score-text {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  color: var(--text-main);
+  font-size: 0.88rem;
+}
+
+.results-track {
+  width: 100%;
+  height: 9px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--text-main) 13%, transparent);
+}
+
+.results-fill {
+  height: 100%;
+  border-radius: 999px;
 }
 
 @media (max-width: 860px) {

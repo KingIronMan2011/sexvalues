@@ -1,13 +1,25 @@
-{
-  "app": { "name": "SexValues", "legacy": "SexValues legacy" },
+const it = {
+  "app": {
+    "name": "SexValues",
+    "legacy": "SexValues legacy"
+  },
   "header": {
     "viewSource": "Visualizza il codice sorgente su GitHub",
     "language": "Lingua",
     "switchToLight": "Passa alla modalità chiara",
     "switchToDark": "Passa alla modalità scura",
-    "languages": { "en": "Inglese", "de": "Tedesco", "it": "Italiano", "es": "Spagnolo", "fr": "Francese" }
+    "languages": {
+      "en": "Inglese",
+      "de": "Tedesco",
+      "it": "Italiano",
+      "es": "Spagnolo",
+      "fr": "Francese"
+    }
   },
-  "footer": { "privacy": "Informativa sulla privacy", "terms": "Termini di servizio" },
+  "footer": {
+    "privacy": "Informativa sulla privacy",
+    "terms": "Termini di servizio"
+  },
   "cookie": {
     "message": "Usiamo Google Analytics per migliorare il sito. Puoi accettare o rifiutare i cookie analitici.",
     "accept": "Accetta",
@@ -16,7 +28,13 @@
   "home": {
     "disclaimerTitle": "AVVISO",
     "disclaimerText": "Questo test è ancora una versione legacy e verrà migliorato nel tempo. Per ora include un questionario demografico e domande riformulate. Se hai domande, trovi i contatti qui sotto.",
-    "axes": { "attraction": "ATTRAZIONE", "sexDrive": "DESIDERIO", "dominance": "DOMINANZA", "deviance": "DEVIANZA", "affection": "AFFETTO" },
+    "axes": {
+      "attraction": "ATTRAZIONE",
+      "sexDrive": "DESIDERIO",
+      "dominance": "DOMINANZA",
+      "deviance": "DEVIANZA",
+      "affection": "AFFETTO"
+    },
     "startTest": "Inizia il test",
     "whatIsTitle": "Cos'è SexValues?",
     "whatIsParagraph1": "SexValues è un quiz basato su una versione modificata di",
@@ -35,16 +53,46 @@
     "licensingText": "SexValues è concesso in licenza MIT, che permette uso, copia, modifica, unione, pubblicazione, distribuzione, sublicenza e/o vendita di copie del software.",
     "twitter": "Twitter",
     "blurb": {
-      "masculine": { "title": "MASCHILE", "text": "Chi ha punteggi più alti su Maschile tende ad avere attrazione verso la mascolinità o gli uomini." },
-      "feminine": { "title": "FEMMINILE", "text": "Chi ha punteggi più alti su Femminile tende ad avere attrazione verso la femminilità o le donne." },
-      "hypersexual": { "title": "IPERSESSUALE", "text": "Chi ha punteggi più alti su Ipersessuale tende ad avere libido molto frequente o improvvisamente aumentata." },
-      "hyposexual": { "title": "IPOSESSUALE", "text": "Chi ha punteggi più alti su Iposessuale è caratterizzato da una riduzione o assenza di fantasie sessuali e desiderio." },
-      "dominant": { "title": "DOMINANTE", "text": "Chi ha punteggi più alti su Dominante tende ad apprezzare potere e influenza sugli altri." },
-      "submissive": { "title": "SOTTOMESSO", "text": "Chi ha punteggi più alti su Sottomesso tende ad apprezzare essere dominato e guidato." },
-      "deviant": { "title": "DEVIANTE", "text": "Chi ha punteggi più alti su Deviante tende ad avere molti feticismi e kink (più estremi)." },
-      "pure": { "title": "PURO", "text": "Chi ha punteggi più alti su Puro tende a preferire esperienze vanilla." },
-      "affective": { "title": "AFFETTIVO", "text": "Chi ha punteggi più alti su Affettivo tende ad avere sessualità solo con persone verso cui prova sentimenti romantici." },
-      "hedonist": { "title": "EDONISTA", "text": "Chi ha punteggi più alti su Edonista tende a vivere la propria sessualità in modo più aperto." }
+      "masculine": {
+        "title": "MASCHILE",
+        "text": "Chi ha punteggi più alti su Maschile tende ad avere attrazione verso la mascolinità o gli uomini."
+      },
+      "feminine": {
+        "title": "FEMMINILE",
+        "text": "Chi ha punteggi più alti su Femminile tende ad avere attrazione verso la femminilità o le donne."
+      },
+      "hypersexual": {
+        "title": "IPERSESSUALE",
+        "text": "Chi ha punteggi più alti su Ipersessuale tende ad avere libido molto frequente o improvvisamente aumentata."
+      },
+      "hyposexual": {
+        "title": "IPOSESSUALE",
+        "text": "Chi ha punteggi più alti su Iposessuale è caratterizzato da una riduzione o assenza di fantasie sessuali e desiderio."
+      },
+      "dominant": {
+        "title": "DOMINANTE",
+        "text": "Chi ha punteggi più alti su Dominante tende ad apprezzare potere e influenza sugli altri."
+      },
+      "submissive": {
+        "title": "SOTTOMESSO",
+        "text": "Chi ha punteggi più alti su Sottomesso tende ad apprezzare essere dominato e guidato."
+      },
+      "deviant": {
+        "title": "DEVIANTE",
+        "text": "Chi ha punteggi più alti su Deviante tende ad avere molti feticismi e kink (più estremi)."
+      },
+      "pure": {
+        "title": "PURO",
+        "text": "Chi ha punteggi più alti su Puro tende a preferire esperienze vanilla."
+      },
+      "affective": {
+        "title": "AFFETTIVO",
+        "text": "Chi ha punteggi più alti su Affettivo tende ad avere sessualità solo con persone verso cui prova sentimenti romantici."
+      },
+      "hedonist": {
+        "title": "EDONISTA",
+        "text": "Chi ha punteggi più alti su Edonista tende a vivere la propria sessualità in modo più aperto."
+      }
     }
   },
   "instructions": {
@@ -55,20 +103,61 @@
   },
   "quiz": {
     "progress": "Domanda {{current}} di {{total}}",
-    "answers": { "stronglyAgree": "Fortemente d'accordo", "agree": "D'accordo", "neutral": "Neutrale", "disagree": "In disaccordo", "stronglyDisagree": "Fortemente in disaccordo", "unknown": "Non so/Non capisco" },
+    "answers": {
+      "stronglyAgree": "Fortemente d'accordo",
+      "agree": "D'accordo",
+      "neutral": "Neutrale",
+      "disagree": "In disaccordo",
+      "stronglyDisagree": "Fortemente in disaccordo",
+      "unknown": "Non so/Non capisco"
+    },
     "back": "Indietro"
   },
   "results": {
     "supportText": "Supporta lo sviluppo continuo su",
     "title": "Risultati",
     "back": "Indietro",
-    "axisNames": { "attract": "Attrazione", "drive": "Desiderio sessuale", "dominant": "Asse Dominanza", "deviance": "Asse Devianza", "affect": "Asse Affetto" },
+    "axisNames": {
+      "attract": "Attrazione",
+      "drive": "Desiderio sessuale",
+      "dominant": "Asse Dominanza",
+      "deviance": "Asse Devianza",
+      "affect": "Asse Affetto"
+    },
     "axisArrays": {
-      "attract": ["Femminile", "Tendente al femminile", "Neutrale", "Tendente al maschile", "Maschile"],
-      "drive": ["Iposessuale", "Basso", "Medio", "Alto", "Ipersessuale"],
-      "dominant": ["Sottomesso", "Switch", "Dominante"],
-      "deviance": ["Puritano", "Vanilla", "Bilanciato", "Kinky", "Deviante"],
-      "affect": ["Edonista", "Aperto", "Neutrale", "Affettivo", "Esclusivo"]
+      "attract": [
+        "Femminile",
+        "Tendente al femminile",
+        "Neutrale",
+        "Tendente al maschile",
+        "Maschile"
+      ],
+      "drive": [
+        "Iposessuale",
+        "Basso",
+        "Medio",
+        "Alto",
+        "Ipersessuale"
+      ],
+      "dominant": [
+        "Sottomesso",
+        "Switch",
+        "Dominante"
+      ],
+      "deviance": [
+        "Puritano",
+        "Vanilla",
+        "Bilanciato",
+        "Kinky",
+        "Deviante"
+      ],
+      "affect": [
+        "Edonista",
+        "Aperto",
+        "Neutrale",
+        "Affettivo",
+        "Esclusivo"
+      ]
     }
   },
   "feedback": {
@@ -98,4 +187,6 @@
     "p2": "Usando questo sito, accetti di non abusare del servizio, tentare di interromperlo o inviare contenuti illeciti.",
     "p3": "Il software è fornito sotto licenza MIT, senza garanzie di alcun tipo."
   }
-}
+} as const
+
+export default it

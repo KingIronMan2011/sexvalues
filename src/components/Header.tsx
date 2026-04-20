@@ -1,7 +1,8 @@
-import { FaGithub } from 'react-icons/fa6'
+import { useEffect, useRef, useState } from 'react'
+import { FaChevronDown, FaGithub } from 'react-icons/fa6'
 import { useTranslation } from 'react-i18next'
 
-import { supportedLanguages } from '../i18n'
+import { supportedLanguages } from '../locales/Languages'
 
 type HeaderProps = {
   theme: 'dark' | 'light'
@@ -10,8 +11,35 @@ type HeaderProps = {
 
 export default function Header({ theme, onToggleTheme }: HeaderProps) {
   const { i18n, t } = useTranslation()
+  const [languageMenuOpen, setLanguageMenuOpen] = useState(false)
+  const languageMenuRef = useRef<HTMLDivElement | null>(null)
 
   const currentLanguage = i18n.resolvedLanguage?.split('-')[0] ?? 'en'
+
+  useEffect(() => {
+    const closeMenuOnOutsideClick = (event: MouseEvent) => {
+      if (!languageMenuRef.current) return
+      if (languageMenuRef.current.contains(event.target as Node)) return
+      setLanguageMenuOpen(false)
+    }
+
+    const closeMenuOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setLanguageMenuOpen(false)
+    }
+
+    document.addEventListener('mousedown', closeMenuOnOutsideClick)
+    document.addEventListener('keydown', closeMenuOnEscape)
+
+    return () => {
+      document.removeEventListener('mousedown', closeMenuOnOutsideClick)
+      document.removeEventListener('keydown', closeMenuOnEscape)
+    }
+  }, [])
+
+  const changeLanguage = (language: (typeof supportedLanguages)[number]) => {
+    setLanguageMenuOpen(false)
+    void i18n.changeLanguage(language)
+  }
 
   return (
     <header className="site-header">
@@ -26,24 +54,47 @@ export default function Header({ theme, onToggleTheme }: HeaderProps) {
       </a>
 
       <div className="site-header-controls">
-        <label className="header-control">
-          {t('header.language')}
-          <select
-            className="selection m-0"
-            value={currentLanguage}
-            onChange={(event) => void i18n.changeLanguage(event.target.value)}
-          >
-            {supportedLanguages.map((language) => (
-              <option key={language} value={language}>
-                {t(`header.languages.${language}`)}
-              </option>
-            ))}
-          </select>
-        </label>
-        <button className="small-button" onClick={onToggleTheme}>
-          {theme === 'dark'
-            ? t('header.switchToLight')
-            : t('header.switchToDark')}
+        <div className="header-control-group">
+          <span className="header-control-label">{t('header.language')}</span>
+          <div className="language-dropdown" ref={languageMenuRef}>
+            <button
+              className="header-control-button"
+              onClick={() => setLanguageMenuOpen((prev) => !prev)}
+              aria-haspopup="listbox"
+              aria-expanded={languageMenuOpen}
+            >
+              <span>{t(`header.languages.${currentLanguage}`)}</span>
+              <FaChevronDown
+                size={14}
+                className={languageMenuOpen ? 'language-chevron open' : 'language-chevron'}
+              />
+            </button>
+
+            {languageMenuOpen && (
+              <ul className="language-dropdown-menu" role="listbox">
+                {supportedLanguages.map((language) => (
+                  <li key={language}>
+                    <button
+                      className={
+                        language === currentLanguage
+                          ? 'language-option active'
+                          : 'language-option'
+                      }
+                      onClick={() => changeLanguage(language)}
+                      role="option"
+                      aria-selected={language === currentLanguage}
+                    >
+                      {t(`header.languages.${language}`)}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+
+        <button className="header-control-button" onClick={onToggleTheme}>
+          {theme === 'dark' ? t('header.switchToLight') : t('header.switchToDark')}
         </button>
       </div>
     </header>

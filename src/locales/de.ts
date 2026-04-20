@@ -1,13 +1,25 @@
-{
-  "app": { "name": "SexValues", "legacy": "SexValues Legacy" },
+const de = {
+  "app": {
+    "name": "SexValues",
+    "legacy": "SexValues Legacy"
+  },
   "header": {
     "viewSource": "Quellcode auf GitHub ansehen",
     "language": "Sprache",
     "switchToLight": "Zum hellen Modus wechseln",
     "switchToDark": "Zum dunklen Modus wechseln",
-    "languages": { "en": "Englisch", "de": "Deutsch", "it": "Italienisch", "es": "Spanisch", "fr": "Französisch" }
+    "languages": {
+      "en": "Englisch",
+      "de": "Deutsch",
+      "it": "Italienisch",
+      "es": "Spanisch",
+      "fr": "Französisch"
+    }
   },
-  "footer": { "privacy": "Datenschutzerklärung", "terms": "Nutzungsbedingungen" },
+  "footer": {
+    "privacy": "Datenschutzerklärung",
+    "terms": "Nutzungsbedingungen"
+  },
   "cookie": {
     "message": "Wir verwenden Google Analytics, um die Website zu verbessern. Sie können Analyse-Cookies akzeptieren oder ablehnen.",
     "accept": "Akzeptieren",
@@ -16,7 +28,13 @@
   "home": {
     "disclaimerTitle": "HINWEIS",
     "disclaimerText": "Dieser Test ist noch eine Legacy-Version und wird im Laufe der Zeit verbessert. Derzeit enthält er einen demografischen Fragebogen und umformulierte Fragen. Bei Fragen finden Sie unten Kontaktinformationen.",
-    "axes": { "attraction": "ANZIEHUNG", "sexDrive": "SEXTRIEB", "dominance": "DOMINANZ", "deviance": "ABWEICHUNG", "affection": "ZUNEIGUNG" },
+    "axes": {
+      "attraction": "ANZIEHUNG",
+      "sexDrive": "SEXTRIEB",
+      "dominance": "DOMINANZ",
+      "deviance": "ABWEICHUNG",
+      "affection": "ZUNEIGUNG"
+    },
     "startTest": "Test starten",
     "whatIsTitle": "Was ist SexValues?",
     "whatIsParagraph1": "SexValues ist ein Quiz auf Basis einer modifizierten Version von",
@@ -35,16 +53,46 @@
     "licensingText": "SexValues steht unter der MIT-Lizenz, die Nutzung, Kopieren, Ändern, Zusammenführen, Veröffentlichen, Verteilen, Unterlizenzieren und/oder Verkaufen von Kopien der Software erlaubt.",
     "twitter": "Twitter",
     "blurb": {
-      "masculine": { "title": "MASKULIN", "text": "Höhere maskuline Werte bedeuten stärkere Anziehung zu Männlichkeit oder Männern." },
-      "feminine": { "title": "FEMININ", "text": "Höhere feminine Werte bedeuten stärkere Anziehung zu Weiblichkeit oder Frauen." },
-      "hypersexual": { "title": "HYPERSEXUELL", "text": "Höhere hypersexuelle Werte deuten auf sehr häufige oder plötzlich erhöhte Libido hin." },
-      "hyposexual": { "title": "HYPOSEXUELL", "text": "Höhere hyposexuelle Werte zeichnen sich durch wenig oder fehlende sexuelle Fantasien und geringes sexuelles Verlangen aus." },
-      "dominant": { "title": "DOMINANT", "text": "Höhere dominante Werte bedeuten oft, gern Macht und Einfluss über andere zu haben." },
-      "submissive": { "title": "SUBMISSIV", "text": "Höhere submissive Werte bedeuten oft, gern dominiert und angeleitet zu werden." },
-      "deviant": { "title": "DEVIANT", "text": "Höhere deviante Werte deuten auf viele (extremere) Fetische und Kinks hin." },
-      "pure": { "title": "REIN", "text": "Höhere reine Werte deuten auf eine Vorliebe für klassische Erfahrungen hin." },
-      "affective": { "title": "AFFEKTIV", "text": "Höhere affektive Werte bedeuten oft, nur mit Personen sexuell zu sein, für die romantische Gefühle bestehen." },
-      "hedonist": { "title": "HEDONISTISCH", "text": "Höhere hedonistische Werte bedeuten oft einen offeneren Umgang mit der eigenen Sexualität." }
+      "masculine": {
+        "title": "MASKULIN",
+        "text": "Höhere maskuline Werte bedeuten stärkere Anziehung zu Männlichkeit oder Männern."
+      },
+      "feminine": {
+        "title": "FEMININ",
+        "text": "Höhere feminine Werte bedeuten stärkere Anziehung zu Weiblichkeit oder Frauen."
+      },
+      "hypersexual": {
+        "title": "HYPERSEXUELL",
+        "text": "Höhere hypersexuelle Werte deuten auf sehr häufige oder plötzlich erhöhte Libido hin."
+      },
+      "hyposexual": {
+        "title": "HYPOSEXUELL",
+        "text": "Höhere hyposexuelle Werte zeichnen sich durch wenig oder fehlende sexuelle Fantasien und geringes sexuelles Verlangen aus."
+      },
+      "dominant": {
+        "title": "DOMINANT",
+        "text": "Höhere dominante Werte bedeuten oft, gern Macht und Einfluss über andere zu haben."
+      },
+      "submissive": {
+        "title": "SUBMISSIV",
+        "text": "Höhere submissive Werte bedeuten oft, gern dominiert und angeleitet zu werden."
+      },
+      "deviant": {
+        "title": "DEVIANT",
+        "text": "Höhere deviante Werte deuten auf viele (extremere) Fetische und Kinks hin."
+      },
+      "pure": {
+        "title": "REIN",
+        "text": "Höhere reine Werte deuten auf eine Vorliebe für klassische Erfahrungen hin."
+      },
+      "affective": {
+        "title": "AFFEKTIV",
+        "text": "Höhere affektive Werte bedeuten oft, nur mit Personen sexuell zu sein, für die romantische Gefühle bestehen."
+      },
+      "hedonist": {
+        "title": "HEDONISTISCH",
+        "text": "Höhere hedonistische Werte bedeuten oft einen offeneren Umgang mit der eigenen Sexualität."
+      }
     }
   },
   "instructions": {
@@ -55,20 +103,61 @@
   },
   "quiz": {
     "progress": "Frage {{current}} von {{total}}",
-    "answers": { "stronglyAgree": "Stimme voll zu", "agree": "Stimme zu", "neutral": "Neutral", "disagree": "Stimme nicht zu", "stronglyDisagree": "Stimme überhaupt nicht zu", "unknown": "Weiß ich nicht/Verstehe ich nicht" },
+    "answers": {
+      "stronglyAgree": "Stimme voll zu",
+      "agree": "Stimme zu",
+      "neutral": "Neutral",
+      "disagree": "Stimme nicht zu",
+      "stronglyDisagree": "Stimme überhaupt nicht zu",
+      "unknown": "Weiß ich nicht/Verstehe ich nicht"
+    },
     "back": "Zurück"
   },
   "results": {
     "supportText": "Unterstütze die weitere Entwicklung auf",
     "title": "Ergebnisse",
     "back": "Zurück",
-    "axisNames": { "attract": "Anziehung", "drive": "Sextrieb", "dominant": "Dominanzachse", "deviance": "Abweichungsachse", "affect": "Zuneigungsachse" },
+    "axisNames": {
+      "attract": "Anziehung",
+      "drive": "Sextrieb",
+      "dominant": "Dominanzachse",
+      "deviance": "Abweichungsachse",
+      "affect": "Zuneigungsachse"
+    },
     "axisArrays": {
-      "attract": ["Feminin", "Eher feminin", "Neutral", "Eher maskulin", "Maskulin"],
-      "drive": ["Hyposexuell", "Niedrig", "Mittel", "Hoch", "Hypersexuell"],
-      "dominant": ["Submissiv", "Switch", "Dominant"],
-      "deviance": ["Puritanisch", "Vanilla", "Ausgewogen", "Kinky", "Deviant"],
-      "affect": ["Hedonistisch", "Offen", "Neutral", "Affektiv", "Exklusiv"]
+      "attract": [
+        "Feminin",
+        "Eher feminin",
+        "Neutral",
+        "Eher maskulin",
+        "Maskulin"
+      ],
+      "drive": [
+        "Hyposexuell",
+        "Niedrig",
+        "Mittel",
+        "Hoch",
+        "Hypersexuell"
+      ],
+      "dominant": [
+        "Submissiv",
+        "Switch",
+        "Dominant"
+      ],
+      "deviance": [
+        "Puritanisch",
+        "Vanilla",
+        "Ausgewogen",
+        "Kinky",
+        "Deviant"
+      ],
+      "affect": [
+        "Hedonistisch",
+        "Offen",
+        "Neutral",
+        "Affektiv",
+        "Exklusiv"
+      ]
     }
   },
   "feedback": {
@@ -98,4 +187,6 @@
     "p2": "Durch die Nutzung dieser Website stimmen Sie zu, den Dienst nicht zu missbrauchen, nicht zu stören und keine rechtswidrigen Inhalte zu übermitteln.",
     "p3": "Die Software wird unter der MIT-Lizenz ohne jegliche Gewährleistung bereitgestellt."
   }
-}
+} as const
+
+export default de

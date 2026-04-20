@@ -1,4 +1,4 @@
-{
+const en = {
   "app": {
     "name": "SexValues",
     "legacy": "SexValues legacy"
@@ -125,11 +125,39 @@
       "affect": "Affection Axis"
     },
     "axisArrays": {
-      "attract": ["Feminine", "Feminine-leaning", "Neutral", "Masculine-leaning", "Masculine"],
-      "drive": ["Hyposexual", "Low", "Medium", "High", "Hypersexual"],
-      "dominant": ["Submissive", "Switch", "Dominant"],
-      "deviance": ["Puritan", "Vanilla", "Balanced", "Kinky", "Deviant"],
-      "affect": ["Hedonist", "Open", "Neutral", "Affective", "Exclusive"]
+      "attract": [
+        "Feminine",
+        "Feminine-leaning",
+        "Neutral",
+        "Masculine-leaning",
+        "Masculine"
+      ],
+      "drive": [
+        "Hyposexual",
+        "Low",
+        "Medium",
+        "High",
+        "Hypersexual"
+      ],
+      "dominant": [
+        "Submissive",
+        "Switch",
+        "Dominant"
+      ],
+      "deviance": [
+        "Puritan",
+        "Vanilla",
+        "Balanced",
+        "Kinky",
+        "Deviant"
+      ],
+      "affect": [
+        "Hedonist",
+        "Open",
+        "Neutral",
+        "Affective",
+        "Exclusive"
+      ]
     }
   },
   "feedback": {
@@ -159,4 +187,6 @@
     "p2": "By using this website, you agree not to misuse the service, attempt to disrupt it, or submit unlawful content.",
     "p3": "The software is provided under the MIT License, without warranty of any kind."
   }
-}
+} as const
+
+export default en
