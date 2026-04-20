@@ -1,4 +1,6 @@
-export const questionsFeedback = [
+import type { FeedbackQuestion } from '../types'
+
+export const questionsFeedback: FeedbackQuestion[] = [
   {
     id: 1,
     question: 'What describes your gender identity the best?',

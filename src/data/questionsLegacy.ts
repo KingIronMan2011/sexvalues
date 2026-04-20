@@ -1,4 +1,6 @@
-export const questionsLegacy = [
+import type { LegacyQuestion } from '../types'
+
+export const questionsLegacy: LegacyQuestion[] = [
   // Attract
   {
     id: 1,

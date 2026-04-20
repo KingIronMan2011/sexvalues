@@ -8,9 +8,15 @@ import { questionsLegacy } from '../data/questionsLegacy'
 const values = [
   ['masculine', 'hypersexual', 'dominant', 'deviant', 'affection'],
   ['feminine', 'hyposexual', 'submissive', 'pure', 'hedonism'],
-]
+] as const
 
-const blurbs = [
+type BlurbEntry = {
+  left: [string, string, string]
+  axis: string
+  right: [string, string, string]
+}
+
+const blurbs: BlurbEntry[] = [
   {
     left: [
       'MASCULINE',

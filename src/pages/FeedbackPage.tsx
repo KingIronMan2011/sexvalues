@@ -3,11 +3,19 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import PageShell from '../components/PageShell'
 import { questionsFeedback } from '../data/questionsFeedback'
+import type {
+  FeedbackAnswerValue,
+  FeedbackAnswers,
+  FeedbackQuestion,
+  Percentages,
+  QuizAnswers,
+  SmallSelectionAnswer,
+} from '../types'
 
-const getCookie = (name) => {
+const getCookie = (name: string): string | undefined => {
   const value = `; ${document.cookie}`
   const parts = value.split(`; ${name}=`)
-  if (parts.length === 2) return parts.pop().split(';').shift()
+  if (parts.length === 2) return parts.pop()?.split(';').shift()
   return undefined
 }
 
@@ -16,42 +24,46 @@ const setTakenCookie = () => {
   document.cookie = `taken=true; expires=${date}; path=/; SameSite=Strict`
 }
 
+const parseStoredJson = <T,>(key: string, fallback: T): T => {
+  try {
+    const value = sessionStorage.getItem(key)
+    if (!value) return fallback
+    return JSON.parse(value) as T
+  } catch {
+    return fallback
+  }
+}
+
 export default function FeedbackPage() {
   const navigate = useNavigate()
   const location = useLocation()
   const [started, setStarted] = useState(false)
-  const [answers, setAnswers] = useState({})
+  const [answers, setAnswers] = useState<FeedbackAnswers>({})
   const [questionIndex, setQuestionIndex] = useState(0)
   const [textValue, setTextValue] = useState('')
   const [numberValue, setNumberValue] = useState('')
   const [selectValue, setSelectValue] = useState('')
 
-  const testAnswers = useMemo(() => {
-    try {
-      return JSON.parse(sessionStorage.getItem('answers') ?? '{}')
-    } catch {
-      return {}
-    }
-  }, [])
+  const testAnswers = useMemo(
+    () => parseStoredJson<QuizAnswers>('answers', {}),
+    [],
+  )
 
-  const testPercentages = useMemo(() => {
-    try {
-      return JSON.parse(sessionStorage.getItem('percentages') ?? '{}')
-    } catch {
-      return {}
-    }
-  }, [])
+  const testPercentages = useMemo(
+    () => parseStoredJson<Percentages>('percentages', {}),
+    [],
+  )
 
   const taken = getCookie('taken') === 'true'
   const hasQuizAnswers = Object.keys(testAnswers).length > 0
-  const current = questionsFeedback[questionIndex]
+  const current: FeedbackQuestion | undefined = questionsFeedback[questionIndex]
 
   const goToResults = () => {
     setTakenCookie()
     navigate(`/results${location.search}`)
   }
 
-  const sendDataAndRefer = async (extra) => {
+  const sendDataAndRefer = async (extra: FeedbackAnswers) => {
     try {
       await fetch('https://api.censusbot.app/v1/tests/submit', {
         method: 'POST',
@@ -71,7 +83,7 @@ export default function FeedbackPage() {
     }
   }
 
-  const pass = (serious) => {
+  const pass = (serious: boolean) => {
     if (serious && hasQuizAnswers && !taken) {
       void sendDataAndRefer(answers)
       return
@@ -79,8 +91,9 @@ export default function FeedbackPage() {
     goToResults()
   }
 
-  const nextQuestion = (answer) => {
-    const nextAnswers = { ...answers, [current.id]: answer }
+  const nextQuestion = (answer: FeedbackAnswerValue) => {
+    if (!current) return
+    const nextAnswers: FeedbackAnswers = { ...answers, [current.id]: answer }
     setAnswers(nextAnswers)
 
     if (questionIndex + 1 < questionsFeedback.length) {
@@ -99,7 +112,7 @@ export default function FeedbackPage() {
   }
 
   const prevQuestion = () => {
-    if (questionIndex === 0) return
+    if (questionIndex === 0 || !current) return
     const prevIndex = questionIndex - 1
     const nextAnswers = { ...answers }
     delete nextAnswers[current.id]
@@ -114,7 +127,7 @@ export default function FeedbackPage() {
     if (!current) return null
 
     if (current.questionType === 'smallSelection') {
-      return current.answers.map((button) => (
+      return current.answers.map((button: SmallSelectionAnswer) => (
         <button
           key={button.label}
           className="main-button"
@@ -248,7 +261,7 @@ export default function FeedbackPage() {
       <h2 className="heading text-center">
         Question {questionIndex + 1} of {questionsFeedback.length}
       </h2>
-      <p className="question-card">{current.question}</p>
+      <p className="question-card">{current?.question}</p>
       {renderQuestionInput()}
       <button
         className={questionIndex === 0 ? 'small-button-off' : 'small-button'}

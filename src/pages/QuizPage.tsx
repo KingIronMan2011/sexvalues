@@ -4,8 +4,15 @@ import { useNavigate } from 'react-router-dom'
 import PageShell from '../components/PageShell'
 import { questionsLegacy } from '../data/questionsLegacy'
 import { calculatePercentages, shuffleArray } from '../lib/quiz'
+import type { LegacyQuestion, QuizAnswerValue, QuizAnswers } from '../types'
 
-const scoreButtons = [
+type ScoreButton = {
+  label: string
+  value: QuizAnswerValue
+  className: string
+}
+
+const scoreButtons: ScoreButton[] = [
   { label: 'Strongly Agree', value: 1, className: 'stronglyAgree' },
   { label: 'Agree', value: 0.5, className: 'agree' },
   { label: 'Neutral', value: 0, className: 'neutral' },
@@ -16,23 +23,26 @@ const scoreButtons = [
 
 export default function QuizPage() {
   const navigate = useNavigate()
-  const questionsObject = useMemo(
+  const questionsObject = useMemo<Record<string, LegacyQuestion>>(
     () =>
-      questionsLegacy.reduce((acc, question) => {
-        acc[question.id] = question
-        return acc
-      }, {}),
+      questionsLegacy.reduce<Record<string, LegacyQuestion>>(
+        (acc, question) => {
+          acc[String(question.id)] = question
+          return acc
+        },
+        {},
+      ),
     [],
   )
-  const [questionsOrder] = useState(() =>
+  const [questionsOrder] = useState<string[]>(() =>
     shuffleArray(Object.keys(questionsObject)),
   )
-  const [answers, setAnswers] = useState({})
+  const [answers, setAnswers] = useState<QuizAnswers>({})
   const [questionIndex, setQuestionIndex] = useState(0)
 
   const currentQuestion = questionsObject[questionsOrder[questionIndex]]
 
-  const goResults = (allAnswers) => {
+  const goResults = (allAnswers: QuizAnswers) => {
     const percentages = calculatePercentages(allAnswers, questionsObject)
     sessionStorage.setItem('answers', JSON.stringify(allAnswers))
     sessionStorage.setItem('percentages', JSON.stringify(percentages))
@@ -49,9 +59,9 @@ export default function QuizPage() {
     navigate(`${route}?${params}`)
   }
 
-  const nextQuestion = (value) => {
+  const nextQuestion = (value: QuizAnswerValue) => {
     const id = questionsOrder[questionIndex]
-    const nextAnswers = { ...answers, [id]: value }
+    const nextAnswers: QuizAnswers = { ...answers, [id]: value }
     setAnswers(nextAnswers)
 
     if (questionIndex + 1 < questionsOrder.length) {

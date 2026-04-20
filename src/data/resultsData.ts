@@ -1,8 +1,16 @@
+import type { AxisLabel, ValueName } from '../types'
+
 // Axis Labels
 
-export const labels = ['attract', 'drive', 'dominant', 'deviance', 'affect']
+export const labels: AxisLabel[] = [
+  'attract',
+  'drive',
+  'dominant',
+  'deviance',
+  'affect',
+]
 
-export const axisNames = {
+export const axisNames: Record<AxisLabel, string> = {
   attract: 'Attraction',
   drive: 'Sex Drive',
   dominant: 'Dominance Axis',
@@ -10,7 +18,7 @@ export const axisNames = {
   affect: 'Affection Axis',
 }
 
-export const axisArrays = {
+export const axisArrays: Record<AxisLabel, string[]> = {
   attract: [
     'Feminine',
     'Feminine-leaning',
@@ -26,12 +34,12 @@ export const axisArrays = {
 
 // Values
 
-export const values = {
+export const values: { left: ValueName[]; right: ValueName[] } = {
   left: ['masculine', 'hypersexual', 'dominant', 'deviant', 'affective'],
   right: ['feminine', 'hyposexual', 'submissive', 'pure', 'hedonist'],
 }
 
-export const valueColors = {
+export const valueColors: Record<ValueName, string> = {
   masculine: '#0099E5',
   feminine: '#E50099',
   hyposexual: '#00CCCC',

@@ -9,16 +9,17 @@ import {
   valueColors,
   values,
 } from '../data/resultsData'
+import type { AxisLabel, Scores, ValueName } from '../types'
 
-const getLabel = (val, ary) =>
+const getLabel = (val: number, ary: string[]): string =>
   ary[Math.min(Math.floor((val / 100) * ary.length), ary.length - 1)]
 
 export default function ResultsPage() {
   const navigate = useNavigate()
   const location = useLocation()
-  const canvasRef = useRef(null)
+  const canvasRef = useRef<HTMLCanvasElement | null>(null)
 
-  const scores = useMemo(() => {
+  const scores = useMemo<Scores>(() => {
     const params = new URLSearchParams(location.search)
     const attract = Number(params.get('attract') ?? 50)
     const drive = Number(params.get('drive') ?? 50)
@@ -46,14 +47,14 @@ export default function ResultsPage() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    const loadImage = (name) =>
+    const loadImage = (name: string): Promise<[string, HTMLImageElement]> =>
       new Promise((resolve) => {
         const img = new Image()
         img.src = `/value_images/${name}.svg`
         img.onload = () => resolve([name, img])
       })
 
-    const mapName = {
+    const mapName: Partial<Record<ValueName, string>> = {
       affective: 'affection',
       hedonist: 'hedonism',
     }
@@ -63,7 +64,10 @@ export default function ResultsPage() {
         loadImage(mapName[name] ?? name),
       ),
     ).then((entries) => {
-      const imageMap = Object.fromEntries(entries)
+      const imageMap = Object.fromEntries(entries) as Record<
+        string,
+        HTMLImageElement
+      >
 
       ctx.fillStyle = '#EEEEEE'
       ctx.fillRect(0, 0, 800, 750)
@@ -130,9 +134,10 @@ export default function ResultsPage() {
 
       y = 163
       values.left.forEach((name, idx) => {
+        const labelKey = labels[idx] as AxisLabel
         ctx.font = '300 30px Montserrat'
         ctx.fillText(
-          `${axisNames[labels[idx]]}: ${getLabel(scores[name], axisArrays[labels[idx]])}`,
+          `${axisNames[labelKey]}: ${getLabel(scores[name], axisArrays[labelKey])}`,
           400,
           y,
         )
