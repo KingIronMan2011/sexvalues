@@ -48,13 +48,7 @@ export default function QuizPage() {
     sessionStorage.setItem('percentages', JSON.stringify(percentages))
 
     const params = new URLSearchParams(percentages).toString()
-    const feedbackHosts = [
-      'sexvalues.github.io',
-      import.meta.env.VITE_FEEDBACK_HOST,
-    ].filter(Boolean)
-    const shouldUseFeedback =
-      import.meta.env.VITE_ENABLE_FEEDBACK_ROUTE === 'true' ||
-      feedbackHosts.includes(window.location.hostname)
+    const shouldUseFeedback = import.meta.env.VITE_ENABLE_FEEDBACK_ROUTE !== 'false'
     const route = shouldUseFeedback ? '/feedback' : '/results'
     navigate(`${route}?${params}`)
   }

@@ -25,7 +25,7 @@ export const questionsLegacy: LegacyQuestion[] = [
   },
   {
     id: 4,
-    question: 'The benis only makes it better! (I like dick)',
+    question: 'A penis only makes it better. (I like dick.)',
     effect: {
       attract: 1,
     },
@@ -157,7 +157,7 @@ export const questionsLegacy: LegacyQuestion[] = [
   },
   {
     id: 22,
-    question: 'I find most of fetishes disgusting.',
+    question: 'I find most fetishes disgusting.',
     effect: {
       deviance: -1,
     },

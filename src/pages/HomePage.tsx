@@ -1,5 +1,5 @@
 import { ArrowRight } from 'lucide-react'
-import { FaDiscord, FaGithub, FaXTwitter } from 'react-icons/fa6'
+import { FaXTwitter } from 'react-icons/fa6'
 import { useNavigate } from 'react-router-dom'
 
 import PageShell from '../components/PageShell'
@@ -66,7 +66,7 @@ const blurbs: BlurbEntry[] = [
     right: [
       'PURE',
       '#bdbdbd',
-      'Those with higher Pure scores tend to look for vanilla experience.',
+      'Those with higher Pure scores tend to prefer vanilla experiences.',
     ],
   },
   {
@@ -79,7 +79,7 @@ const blurbs: BlurbEntry[] = [
     right: [
       'HEDONIST',
       '#00B2B2',
-      'Those with higher Hedonist scores tend to be more open about their sexuality.',
+      'Those with higher Hedonist scores tend to be more open with their sexuality.',
     ],
   },
 ]
@@ -89,23 +89,16 @@ export default function HomePage() {
 
   return (
     <PageShell title="SexValues">
-      <a
-        href="https://github.com/sexvalues/sexvalues.github.io"
-        className="fixed right-4 top-4 z-10 rounded-full border border-white/15 bg-[#101735]/80 p-3 text-white backdrop-blur"
-        aria-label="View source on Github"
-      >
-        <FaGithub size={22} />
-      </a>
-
-      <h3 className="text-center font-montserrat text-sm tracking-[0.18em] text-red-300">
-        DISCLAIMER
-      </h3>
-      <p className="mx-auto mt-2 max-w-3xl text-center">
-        This test is still a mess, hence why it&apos;s called legacy. It will be
-        replaced. For now I just added demographic questionnaire, reworded some
-        questions and kicked it off my server. If you have any more questions,
-        my contacts are below.
-      </p>
+      <div className="mx-auto max-w-3xl text-center">
+        <h3 className="font-montserrat text-sm tracking-[0.18em] text-red-300">
+          DISCLAIMER
+        </h3>
+        <p className="mt-2">
+          This test is still a legacy version and will be improved over time.
+          For now, it includes a demographic questionnaire and reworded
+          questions. If you have any questions, contact details are below.
+        </p>
+      </div>
       <hr className="my-5 border-white/10" />
 
       <div className="center-panel">
@@ -149,7 +142,8 @@ export default function HomePage() {
       <p className="mt-3">
         SexValues is a quiz, running on a modded base of{' '}
         <a href="https://8values.github.io/">8values</a>, that attempts to map
-        your sexuality. You will be presented by a statement, and then you will
+        your sexuality. You will be presented with a statement, and then you
+        will
         answer with your opinion on the statement, from <b>Strongly Agree</b> to{' '}
         <b>Strongly Disagree</b>, with each answer slightly affecting your
         scores. At the end of the quiz, your answers will be compared to the
@@ -164,7 +158,7 @@ export default function HomePage() {
         What are the eight values?
       </h2>
       <p className="mt-3">
-        There are five axes - and each has two opposing values assigned to them.
+        There are five axes, and each has two opposing values assigned to it.
       </p>
 
       <div className="section-card mt-4">
@@ -199,19 +193,13 @@ export default function HomePage() {
       <h3 className="mt-6 font-montserrat text-[1.05rem] tracking-wide">Contact</h3>
       <p className="mt-3 flex flex-wrap items-center gap-4">
         <a
-          href="mailto:censusbot3@gmail.com"
+          href="mailto:support@kingironman.dev"
           className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 no-underline"
         >
-          censusbot3@gmail.com
+          support@kingironman.dev
         </a>
         <a
-          href="https://discord.gg/vwqk2UZ"
-          className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 no-underline"
-        >
-          <FaDiscord /> Discord
-        </a>
-        <a
-          href="https://twitter.com/sunkdatadiver"
+          href="https://x.com/KingIronMan2011"
           className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 no-underline"
         >
           <FaXTwitter /> Twitter
@@ -219,15 +207,17 @@ export default function HomePage() {
       </p>
       <h3 className="mt-5 font-montserrat text-[1.05rem] tracking-wide">Privacy</h3>
       <p className="mt-2">
-        This site uses Google Analytics. As well at the end of the test, you
-        will be given the option to fill out general demographic information
-        about yourself.
+        This site can use Google Analytics if you accept analytics cookies. At
+        the end of the test, you can also choose to fill out general
+        demographic information.
       </p>
-      <h3 className="mt-5 font-montserrat text-[1.05rem] tracking-wide">Licencing</h3>
+      <h3 className="mt-5 font-montserrat text-[1.05rem] tracking-wide">
+        Licensing
+      </h3>
       <p className="mt-2">
-        SexValues is licensed under the MIT License, which permits without
-        restriction the rights to use, copy, modify, merge, publish, distribute,
-        sublicense, and/or sell copies of the software.
+        SexValues is licensed under the MIT License, which permits use, copy,
+        modification, merging, publishing, distribution, sublicensing, and/or
+        selling copies of the software.
       </p>
     </PageShell>
   )

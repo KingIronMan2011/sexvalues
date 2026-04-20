@@ -17,7 +17,7 @@ export default function InstructionsPage() {
           Got it!
         </button>
         <button className="main-button disagree" onClick={() => navigate('/')}>
-          Wait, nevermind!
+          Wait, never mind!
         </button>
       </div>
     </PageShell>

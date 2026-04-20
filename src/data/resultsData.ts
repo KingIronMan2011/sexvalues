@@ -28,7 +28,7 @@ export const axisArrays: Record<AxisLabel, string[]> = {
   ],
   drive: ['Hyposexual', 'Low', 'Medium', 'High', 'Hypersexual'],
   dominant: ['Submissive', 'Switch', 'Dominant'],
-  deviance: ['Puritarian', 'Vanilla', 'Balanced', 'Kinky', 'Deviant'],
+  deviance: ['Puritan', 'Vanilla', 'Balanced', 'Kinky', 'Deviant'],
   affect: ['Hedonist', 'Open', 'Neutral', 'Affective', 'Exclusive'],
 }
 
