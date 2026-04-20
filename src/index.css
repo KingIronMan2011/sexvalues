@@ -20,12 +20,15 @@
   --line: rgba(255, 255, 255, 0.14);
   --link-color: #dce4ff;
   --link-hover-color: #f4f7ff;
+  --link-underline-fallback: rgba(220, 228, 255, 0.5);
+  --link-underline-hover-fallback: rgba(220, 228, 255, 0.95);
   --control-bg: rgba(255, 255, 255, 0.08);
   --control-bg-hover: rgba(255, 255, 255, 0.15);
   --input-bg: rgba(255, 255, 255, 0.08);
   --input-border: rgba(255, 255, 255, 0.18);
   --axis-text: #d5ddff;
   --cookie-bg: rgba(17, 22, 40, 0.96);
+  --results-track-fallback: rgba(255, 255, 255, 0.16);
   --shadow: 0 24px 70px rgba(3, 6, 20, 0.55);
 }
 
@@ -42,12 +45,15 @@
   --line: rgba(45, 62, 106, 0.2);
   --link-color: #274ca8;
   --link-hover-color: #163477;
+  --link-underline-fallback: rgba(39, 76, 168, 0.5);
+  --link-underline-hover-fallback: rgba(22, 52, 119, 0.85);
   --control-bg: rgba(34, 61, 124, 0.08);
   --control-bg-hover: rgba(34, 61, 124, 0.16);
   --input-bg: rgba(41, 66, 126, 0.07);
   --input-border: rgba(43, 64, 114, 0.28);
   --axis-text: #284073;
   --cookie-bg: rgba(247, 251, 255, 0.98);
+  --results-track-fallback: rgba(17, 25, 54, 0.18);
   --shadow: 0 20px 45px rgba(72, 93, 154, 0.2);
 }
 
@@ -68,22 +74,38 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 15% 15%, rgba(47, 75, 253, 0.26), transparent 35%),
-    radial-gradient(circle at 85% 10%, rgba(10, 181, 165, 0.18), transparent 40%),
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(47, 75, 253, 0.26),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 85% 10%,
+      rgba(10, 181, 165, 0.18),
+      transparent 40%
+    ),
     var(--bg-main);
   color: var(--text-main);
   font-family: var(--font-roboto);
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 a {
   color: var(--link-color);
+  text-decoration-color: var(--link-underline-fallback);
   text-decoration-color: color-mix(in srgb, var(--link-color) 50%, transparent);
 }
 
 a:hover {
   color: var(--link-hover-color);
-  text-decoration-color: color-mix(in srgb, var(--link-hover-color) 88%, transparent);
+  text-decoration-color: var(--link-underline-hover-fallback);
+  text-decoration-color: color-mix(
+    in srgb,
+    var(--link-hover-color) 88%,
+    transparent
+  );
 }
 
 p {
@@ -519,6 +541,7 @@ img.quadcolumn:hover {
   height: 9px;
   border-radius: 999px;
   overflow: hidden;
+  background: var(--results-track-fallback);
   background: color-mix(in srgb, var(--text-main) 13%, transparent);
 }
 

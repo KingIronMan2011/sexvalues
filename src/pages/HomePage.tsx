@@ -11,7 +11,12 @@ const values = [
   ['feminine', 'hyposexual', 'submissive', 'pure', 'hedonism'],
 ] as const
 
-type AxisKey = 'attraction' | 'sexDrive' | 'dominance' | 'deviance' | 'affection'
+type AxisKey =
+  | 'attraction'
+  | 'sexDrive'
+  | 'dominance'
+  | 'deviance'
+  | 'affection'
 
 type BlurbEntry = {
   left: [string, string, string]
@@ -21,7 +26,11 @@ type BlurbEntry = {
 
 const blurbs: BlurbEntry[] = [
   {
-    left: ['home.blurb.masculine.title', '#0099E5', 'home.blurb.masculine.text'],
+    left: [
+      'home.blurb.masculine.title',
+      '#0099E5',
+      'home.blurb.masculine.text',
+    ],
     axisKey: 'attraction',
     right: ['home.blurb.feminine.title', '#E50099', 'home.blurb.feminine.text'],
   },
@@ -41,7 +50,11 @@ const blurbs: BlurbEntry[] = [
   {
     left: ['home.blurb.dominant.title', '#CC7400', 'home.blurb.dominant.text'],
     axisKey: 'dominance',
-    right: ['home.blurb.submissive.title', '#009957', 'home.blurb.submissive.text'],
+    right: [
+      'home.blurb.submissive.title',
+      '#009957',
+      'home.blurb.submissive.text',
+    ],
   },
   {
     left: ['home.blurb.deviant.title', '#8300E5', 'home.blurb.deviant.text'],
@@ -49,7 +62,11 @@ const blurbs: BlurbEntry[] = [
     right: ['home.blurb.pure.title', '#bdbdbd', 'home.blurb.pure.text'],
   },
   {
-    left: ['home.blurb.affective.title', '#B20000', 'home.blurb.affective.text'],
+    left: [
+      'home.blurb.affective.title',
+      '#B20000',
+      'home.blurb.affective.text',
+    ],
     axisKey: 'affection',
     right: ['home.blurb.hedonist.title', '#00B2B2', 'home.blurb.hedonist.text'],
   },
@@ -86,18 +103,29 @@ export default function HomePage() {
           ))}
           {values[0].map((name) => (
             <a href="#anchor" key={name}>
-              <img src={`/value_images/${name}.svg`} className="quadcolumn" alt={name} />
+              <img
+                src={`/value_images/${name}.svg`}
+                className="quadcolumn"
+                alt={name}
+              />
             </a>
           ))}
           {values[1].map((name) => (
             <a href="#anchor" key={name}>
-              <img src={`/value_images/${name}.svg`} className="quadcolumn" alt={name} />
+              <img
+                src={`/value_images/${name}.svg`}
+                className="quadcolumn"
+                alt={name}
+              />
             </a>
           ))}
         </div>
       </div>
 
-      <button className="main-button mt-4" onClick={() => navigate('/instructions')}>
+      <button
+        className="main-button mt-4"
+        onClick={() => navigate('/instructions')}
+      >
         <span className="inline-flex items-center gap-2">
           {t('home.startTest')} <ArrowRight size={22} />
         </span>
@@ -108,8 +136,9 @@ export default function HomePage() {
       <p className="mt-3">
         {t('home.whatIsParagraph1')}{' '}
         <a href="https://8values.github.io/">8values</a>
-        {t('home.whatIsParagraph2')} <b>{t('home.stronglyAgree')}</b> {t('home.whatIsParagraph3')}{' '}
-        <b>{t('home.stronglyDisagree')}</b>, {t('home.whatIsParagraph4')}
+        {t('home.whatIsParagraph2')} <b>{t('home.stronglyAgree')}</b>{' '}
+        {t('home.whatIsParagraph3')} <b>{t('home.stronglyDisagree')}</b>,{' '}
+        {t('home.whatIsParagraph4')}
         <br />
         <br />
         {t('home.questionCount', { count: questionsLegacy.length })}
@@ -127,7 +156,10 @@ export default function HomePage() {
             key={blurb.axisKey}
           >
             <div className="text-center">
-              <p className="m-0 text-[1.25rem] font-bold" style={{ color: blurb.left[1] }}>
+              <p
+                className="m-0 text-[1.25rem] font-bold"
+                style={{ color: blurb.left[1] }}
+              >
                 {t(blurb.left[0])}
               </p>
               <p>{t(blurb.left[2])}</p>
@@ -137,7 +169,10 @@ export default function HomePage() {
               <img className="w-14" src="/double_arrow.svg" alt="axis" />
             </div>
             <div className="text-center">
-              <p className="m-0 text-[1.25rem] font-bold" style={{ color: blurb.right[1] }}>
+              <p
+                className="m-0 text-[1.25rem] font-bold"
+                style={{ color: blurb.right[1] }}
+              >
                 {t(blurb.right[0])}
               </p>
               <p>{t(blurb.right[2])}</p>
@@ -146,7 +181,9 @@ export default function HomePage() {
         ))}
       </div>
 
-      <h3 className="mt-6 font-montserrat text-[1.05rem] tracking-wide">{t('home.contact')}</h3>
+      <h3 className="mt-6 font-montserrat text-[1.05rem] tracking-wide">
+        {t('home.contact')}
+      </h3>
       <p className="mt-3 flex flex-wrap items-center gap-4">
         <a
           href="mailto:support@kingironman.dev"
@@ -161,9 +198,13 @@ export default function HomePage() {
           <FaXTwitter /> {t('home.twitter')}
         </a>
       </p>
-      <h3 className="mt-5 font-montserrat text-[1.05rem] tracking-wide">{t('home.privacy')}</h3>
+      <h3 className="mt-5 font-montserrat text-[1.05rem] tracking-wide">
+        {t('home.privacy')}
+      </h3>
       <p className="mt-2">{t('home.privacyText')}</p>
-      <h3 className="mt-5 font-montserrat text-[1.05rem] tracking-wide">{t('home.licensing')}</h3>
+      <h3 className="mt-5 font-montserrat text-[1.05rem] tracking-wide">
+        {t('home.licensing')}
+      </h3>
       <p className="mt-2">{t('home.licensingText')}</p>
     </PageShell>
   )

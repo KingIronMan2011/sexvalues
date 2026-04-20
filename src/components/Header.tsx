@@ -9,12 +9,20 @@ type HeaderProps = {
   onToggleTheme: () => void
 }
 
+const isSupportedLanguage = (
+  language: string,
+): language is (typeof supportedLanguages)[number] =>
+  supportedLanguages.some((supportedLanguage) => supportedLanguage === language)
+
 export default function Header({ theme, onToggleTheme }: HeaderProps) {
   const { i18n, t } = useTranslation()
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false)
   const languageMenuRef = useRef<HTMLDivElement | null>(null)
 
-  const currentLanguage = i18n.resolvedLanguage?.split('-')[0] ?? 'en'
+  const resolvedLanguage = i18n.resolvedLanguage?.split('-')[0] ?? 'en'
+  const currentLanguage = isSupportedLanguage(resolvedLanguage)
+    ? resolvedLanguage
+    : 'en'
 
   useEffect(() => {
     const closeMenuOnOutsideClick = (event: MouseEvent) => {
@@ -66,7 +74,11 @@ export default function Header({ theme, onToggleTheme }: HeaderProps) {
               <span>{t(`header.languages.${currentLanguage}`)}</span>
               <FaChevronDown
                 size={14}
-                className={languageMenuOpen ? 'language-chevron open' : 'language-chevron'}
+                className={
+                  languageMenuOpen
+                    ? 'language-chevron open'
+                    : 'language-chevron'
+                }
               />
             </button>
 
@@ -94,7 +106,9 @@ export default function Header({ theme, onToggleTheme }: HeaderProps) {
         </div>
 
         <button className="header-control-button" onClick={onToggleTheme}>
-          {theme === 'dark' ? t('header.switchToLight') : t('header.switchToDark')}
+          {theme === 'dark'
+            ? t('header.switchToLight')
+            : t('header.switchToDark')}
         </button>
       </div>
     </header>

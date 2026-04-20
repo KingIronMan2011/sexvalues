@@ -246,7 +246,10 @@ export default function FeedbackPage() {
             {t('feedback.justResultsNo')}
           </button>
           {!hasQuizAnswers && (
-            <button className="main-button agree" onClick={() => navigate('/quiz')}>
+            <button
+              className="main-button agree"
+              onClick={() => navigate('/quiz')}
+            >
               {t('feedback.doQuiz')}
             </button>
           )}

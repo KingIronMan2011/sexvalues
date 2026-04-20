@@ -32,11 +32,21 @@ export default function ResultsPage() {
 
   const axisArrays = useMemo<Record<AxisLabel, string[]>>(
     () => ({
-      attract: t('results.axisArrays.attract', { returnObjects: true }) as unknown as string[],
-      drive: t('results.axisArrays.drive', { returnObjects: true }) as unknown as string[],
-      dominant: t('results.axisArrays.dominant', { returnObjects: true }) as unknown as string[],
-      deviance: t('results.axisArrays.deviance', { returnObjects: true }) as unknown as string[],
-      affect: t('results.axisArrays.affect', { returnObjects: true }) as unknown as string[],
+      attract: t('results.axisArrays.attract', {
+        returnObjects: true,
+      }) as unknown as string[],
+      drive: t('results.axisArrays.drive', {
+        returnObjects: true,
+      }) as unknown as string[],
+      dominant: t('results.axisArrays.dominant', {
+        returnObjects: true,
+      }) as unknown as string[],
+      deviance: t('results.axisArrays.deviance', {
+        returnObjects: true,
+      }) as unknown as string[],
+      affect: t('results.axisArrays.affect', {
+        returnObjects: true,
+      }) as unknown as string[],
     }),
     [t],
   )
@@ -75,6 +85,8 @@ export default function ResultsPage() {
           axis,
           title: axisNames[axis],
           label: getLabel(leftScore, axisArrays[axis]),
+          leftPoleLabel: axisArrays[axis].at(-1) ?? '',
+          rightPoleLabel: axisArrays[axis].at(0) ?? '',
           leftValue,
           rightValue,
           leftScore,
@@ -113,26 +125,32 @@ export default function ResultsPage() {
             <div className="results-pair">
               <div className="results-score-row">
                 <div className="results-score-text">
-                  <span>{axisArrays[card.axis][axisArrays[card.axis].length - 1]}</span>
+                  <span>{card.leftPoleLabel}</span>
                   <strong>{card.leftScore}%</strong>
                 </div>
                 <div className="results-track">
                   <div
                     className="results-fill"
-                    style={{ width: `${card.leftScore}%`, backgroundColor: valueColors[card.leftValue] }}
+                    style={{
+                      width: `${card.leftScore}%`,
+                      backgroundColor: valueColors[card.leftValue],
+                    }}
                   />
                 </div>
               </div>
 
               <div className="results-score-row">
                 <div className="results-score-text">
-                  <span>{axisArrays[card.axis][0]}</span>
+                  <span>{card.rightPoleLabel}</span>
                   <strong>{card.rightScore}%</strong>
                 </div>
                 <div className="results-track">
                   <div
                     className="results-fill"
-                    style={{ width: `${card.rightScore}%`, backgroundColor: valueColors[card.rightValue] }}
+                    style={{
+                      width: `${card.rightScore}%`,
+                      backgroundColor: valueColors[card.rightValue],
+                    }}
                   />
                 </div>
               </div>

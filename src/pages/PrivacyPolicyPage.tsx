@@ -8,12 +8,8 @@ export default function PrivacyPolicyPage() {
   return (
     <PageShell title={t('privacyPage.title')}>
       <div className="section-card">
-        <p>
-          {t('privacyPage.p1')}
-        </p>
-        <p className="mt-3">
-          {t('privacyPage.p2')}
-        </p>
+        <p>{t('privacyPage.p1')}</p>
+        <p className="mt-3">{t('privacyPage.p2')}</p>
         <p className="mt-3">
           {t('privacyPage.p3')}{' '}
           <a href="mailto:support@kingironman.dev">support@kingironman.dev</a>.

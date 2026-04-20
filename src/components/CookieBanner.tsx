@@ -5,7 +5,10 @@ type CookieBannerProps = {
   onDecline: () => void
 }
 
-export default function CookieBanner({ onAccept, onDecline }: CookieBannerProps) {
+export default function CookieBanner({
+  onAccept,
+  onDecline,
+}: CookieBannerProps) {
   const { t } = useTranslation()
 
   return (

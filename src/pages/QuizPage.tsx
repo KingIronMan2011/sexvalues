@@ -60,7 +60,8 @@ export default function QuizPage() {
     sessionStorage.setItem('percentages', JSON.stringify(percentages))
 
     const params = new URLSearchParams(percentages).toString()
-    const shouldUseFeedback = import.meta.env.VITE_ENABLE_FEEDBACK_ROUTE !== 'false'
+    const shouldUseFeedback =
+      import.meta.env.VITE_ENABLE_FEEDBACK_ROUTE !== 'false'
     const route = shouldUseFeedback ? '/feedback' : '/results'
     navigate(`${route}?${params}`)
   }

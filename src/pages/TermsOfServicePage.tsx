@@ -8,15 +8,9 @@ export default function TermsOfServicePage() {
   return (
     <PageShell title={t('termsPage.title')}>
       <div className="section-card">
-        <p>
-          {t('termsPage.p1')}
-        </p>
-        <p className="mt-3">
-          {t('termsPage.p2')}
-        </p>
-        <p className="mt-3">
-          {t('termsPage.p3')}
-        </p>
+        <p>{t('termsPage.p1')}</p>
+        <p className="mt-3">{t('termsPage.p2')}</p>
+        <p className="mt-3">{t('termsPage.p3')}</p>
       </div>
     </PageShell>
   )
