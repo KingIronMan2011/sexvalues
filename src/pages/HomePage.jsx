@@ -94,7 +94,7 @@ export default function HomePage() {
       <h3 className="text-center text-red-600">DISCLAIMER</h3>
       <p className="text-center text-[#444444]">
         This test is still a mess, hence why it&apos;s called legacy. It will be
-        replaced. For now I just added demographic questionare, reworded some
+        replaced. For now I just added demographic questionnaire, reworded some
         questions and kicked it off my server. If you have any more questions,
         my contacts are below.
       </p>
