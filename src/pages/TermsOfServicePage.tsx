@@ -1,21 +1,16 @@
+import { useTranslation } from 'react-i18next'
+
 import PageShell from '../components/PageShell'
 
 export default function TermsOfServicePage() {
+  const { t } = useTranslation()
+
   return (
-    <PageShell title="Terms of Service">
+    <PageShell title={t('termsPage.title')}>
       <div className="section-card">
-        <p>
-          SexValues is provided for informational and entertainment purposes
-          only. Results are not medical, legal, or psychological advice.
-        </p>
-        <p className="mt-3">
-          By using this website, you agree not to misuse the service, attempt to
-          disrupt it, or submit unlawful content.
-        </p>
-        <p className="mt-3">
-          The software is provided under the MIT License, without warranty of
-          any kind.
-        </p>
+        <p>{t('termsPage.p1')}</p>
+        <p className="mt-3">{t('termsPage.p2')}</p>
+        <p className="mt-3">{t('termsPage.p3')}</p>
       </div>
     </PageShell>
   )

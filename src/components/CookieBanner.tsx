@@ -1,21 +1,25 @@
+import { useTranslation } from 'react-i18next'
+
 type CookieBannerProps = {
   onAccept: () => void
   onDecline: () => void
 }
 
-export default function CookieBanner({ onAccept, onDecline }: CookieBannerProps) {
+export default function CookieBanner({
+  onAccept,
+  onDecline,
+}: CookieBannerProps) {
+  const { t } = useTranslation()
+
   return (
     <div className="cookie-banner" role="dialog" aria-live="polite">
-      <p>
-        We use Google Analytics to improve the site. You can accept or decline
-        analytics cookies.
-      </p>
+      <p>{t('cookie.message')}</p>
       <div className="cookie-banner-actions">
         <button className="small-button" onClick={onAccept}>
-          Accept
+          {t('cookie.accept')}
         </button>
         <button className="small-button" onClick={onDecline}>
-          Decline
+          {t('cookie.decline')}
         </button>
       </div>
     </div>

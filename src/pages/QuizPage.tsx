@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 
 import PageShell from '../components/PageShell'
@@ -12,17 +13,9 @@ type ScoreButton = {
   className: string
 }
 
-const scoreButtons: ScoreButton[] = [
-  { label: 'Strongly Agree', value: 1, className: 'stronglyAgree' },
-  { label: 'Agree', value: 0.5, className: 'agree' },
-  { label: 'Neutral', value: 0, className: 'neutral' },
-  { label: 'Disagree', value: -0.5, className: 'disagree' },
-  { label: 'Strongly Disagree', value: -1, className: 'stronglyDisagree' },
-  { label: "Don't Know/Understand", value: null, className: '' },
-]
-
 export default function QuizPage() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const questionsObject = useMemo<Record<string, LegacyQuestion>>(
     () =>
       questionsLegacy.reduce<Record<string, LegacyQuestion>>(
@@ -39,6 +32,25 @@ export default function QuizPage() {
   )
   const [answers, setAnswers] = useState<QuizAnswers>({})
   const [questionIndex, setQuestionIndex] = useState(0)
+  const scoreButtons = useMemo<ScoreButton[]>(
+    () => [
+      {
+        label: t('quiz.answers.stronglyAgree'),
+        value: 1,
+        className: 'stronglyAgree',
+      },
+      { label: t('quiz.answers.agree'), value: 0.5, className: 'agree' },
+      { label: t('quiz.answers.neutral'), value: 0, className: 'neutral' },
+      { label: t('quiz.answers.disagree'), value: -0.5, className: 'disagree' },
+      {
+        label: t('quiz.answers.stronglyDisagree'),
+        value: -1,
+        className: 'stronglyDisagree',
+      },
+      { label: t('quiz.answers.unknown'), value: null, className: '' },
+    ],
+    [t],
+  )
 
   const currentQuestion = questionsObject[questionsOrder[questionIndex]]
 
@@ -48,7 +60,8 @@ export default function QuizPage() {
     sessionStorage.setItem('percentages', JSON.stringify(percentages))
 
     const params = new URLSearchParams(percentages).toString()
-    const shouldUseFeedback = import.meta.env.VITE_ENABLE_FEEDBACK_ROUTE !== 'false'
+    const shouldUseFeedback =
+      import.meta.env.VITE_ENABLE_FEEDBACK_ROUTE !== 'false'
     const route = shouldUseFeedback ? '/feedback' : '/results'
     navigate(`${route}?${params}`)
   }
@@ -80,7 +93,10 @@ export default function QuizPage() {
   return (
     <PageShell>
       <h2 className="heading text-center">
-        Question {questionIndex + 1} of {questionsOrder.length}
+        {t('quiz.progress', {
+          current: questionIndex + 1,
+          total: questionsOrder.length,
+        })}
       </h2>
       <p className="question-card">{currentQuestion?.question}</p>
 
@@ -101,7 +117,7 @@ export default function QuizPage() {
         onClick={prevQuestion}
         disabled={questionIndex === 0}
       >
-        Back
+        {t('quiz.back')}
       </button>
     </PageShell>
   )
