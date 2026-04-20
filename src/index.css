@@ -275,6 +275,44 @@ p {
   line-height: 1.45;
 }
 
+.question-term {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 0.18em;
+}
+
+.question-term:hover,
+.question-term:focus-visible {
+  filter: brightness(1.1);
+}
+
+.glossary-popup {
+  margin: -0.1rem 0 0.9rem;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--panel-soft);
+  padding: 0.65rem 0.8rem;
+}
+
+.glossary-popup strong {
+  display: block;
+  color: var(--text-main);
+  margin-bottom: 0.2rem;
+}
+
+.glossary-popup p {
+  color: var(--text-muted);
+}
+
 .button-stack {
   display: flex;
   flex-direction: column;
