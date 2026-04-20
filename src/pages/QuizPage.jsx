@@ -1,0 +1,98 @@
+import { useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import PageShell from '../components/PageShell'
+import { questionsLegacy } from '../data/questionsLegacy'
+import { calculatePercentages, shuffleArray } from '../lib/quiz'
+
+const scoreButtons = [
+  { label: 'Strongly Agree', value: 1, className: 'stronglyAgree' },
+  { label: 'Agree', value: 0.5, className: 'agree' },
+  { label: 'Neutral', value: 0, className: 'neutral' },
+  { label: 'Disagree', value: -0.5, className: 'disagree' },
+  { label: 'Strongly Disagree', value: -1, className: 'stronglyDisagree' },
+  { label: "Don't Know/Understand", value: null, className: '' },
+]
+
+export default function QuizPage() {
+  const navigate = useNavigate()
+  const questionsObject = useMemo(
+    () =>
+      questionsLegacy.reduce((acc, question) => {
+        acc[question.id] = question
+        return acc
+      }, {}),
+    [],
+  )
+  const [questionsOrder] = useState(() =>
+    shuffleArray(Object.keys(questionsObject)),
+  )
+  const [answers, setAnswers] = useState({})
+  const [questionIndex, setQuestionIndex] = useState(0)
+
+  const currentQuestion = questionsObject[questionsOrder[questionIndex]]
+
+  const goResults = (allAnswers) => {
+    const percentages = calculatePercentages(allAnswers, questionsObject)
+    sessionStorage.setItem('answers', JSON.stringify(allAnswers))
+    sessionStorage.setItem('percentages', JSON.stringify(percentages))
+
+    const params = new URLSearchParams(percentages).toString()
+    const route =
+      window.location.hostname === 'sexvalues.github.io'
+        ? '/feedback'
+        : '/results'
+    navigate(`${route}?${params}`)
+  }
+
+  const nextQuestion = (value) => {
+    const id = questionsOrder[questionIndex]
+    const nextAnswers = { ...answers, [id]: value }
+    setAnswers(nextAnswers)
+
+    if (questionIndex + 1 < questionsOrder.length) {
+      setQuestionIndex((prev) => prev + 1)
+      return
+    }
+
+    goResults(nextAnswers)
+  }
+
+  const prevQuestion = () => {
+    if (questionIndex === 0) return
+
+    const prevIndex = questionIndex - 1
+    const id = questionsOrder[prevIndex]
+    const nextAnswers = { ...answers }
+    delete nextAnswers[id]
+    setAnswers(nextAnswers)
+    setQuestionIndex(prevIndex)
+  }
+
+  return (
+    <PageShell>
+      <h2 className="heading text-center">
+        Question {questionIndex + 1} of {questionsOrder.length}
+      </h2>
+      <p className="question-card">{currentQuestion?.question}</p>
+
+      {scoreButtons.map((button) => (
+        <button
+          key={button.label}
+          className={`main-button ${button.className}`}
+          onClick={() => nextQuestion(button.value)}
+        >
+          {button.label}
+        </button>
+      ))}
+
+      <button
+        className={questionIndex === 0 ? 'small-button-off' : 'small-button'}
+        onClick={prevQuestion}
+        disabled={questionIndex === 0}
+      >
+        Back
+      </button>
+    </PageShell>
+  )
+}
