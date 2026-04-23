@@ -32,21 +32,11 @@ export default function ResultsPage() {
 
   const axisArrays = useMemo<Record<AxisLabel, string[]>>(
     () => ({
-      attract: t('results.axisArrays.attract', {
-        returnObjects: true,
-      }) as unknown as string[],
-      drive: t('results.axisArrays.drive', {
-        returnObjects: true,
-      }) as unknown as string[],
-      dominant: t('results.axisArrays.dominant', {
-        returnObjects: true,
-      }) as unknown as string[],
-      deviance: t('results.axisArrays.deviance', {
-        returnObjects: true,
-      }) as unknown as string[],
-      affect: t('results.axisArrays.affect', {
-        returnObjects: true,
-      }) as unknown as string[],
+      attract: t('results.axisArrays.attract', { returnObjects: true }) as unknown as string[],
+      drive: t('results.axisArrays.drive', { returnObjects: true }) as unknown as string[],
+      dominant: t('results.axisArrays.dominant', { returnObjects: true }) as unknown as string[],
+      deviance: t('results.axisArrays.deviance', { returnObjects: true }) as unknown as string[],
+      affect: t('results.axisArrays.affect', { returnObjects: true }) as unknown as string[],
     }),
     [t],
   )
@@ -58,7 +48,6 @@ export default function ResultsPage() {
     const dominant = Number(params.get('dominant') ?? 50)
     const deviance = Number(params.get('deviance') ?? 50)
     const affect = Number(params.get('affect') ?? 50)
-
     return {
       masculine: attract,
       feminine: Number((100 - attract).toFixed(1)),
@@ -80,7 +69,6 @@ export default function ResultsPage() {
         const rightValue = values.right[index]
         const leftScore = scores[leftValue]
         const rightScore = scores[rightValue]
-
         return {
           axis,
           title: axisNames[axis],
@@ -159,9 +147,36 @@ export default function ResultsPage() {
         ))}
       </div>
 
-      <button className="main-button mt-5" onClick={() => navigate('/')}>
-        {t('results.back')}
-      </button>
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+        <button
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            padding: '0.85rem 2rem',
+            background: 'var(--panel-card)',
+            border: '1px solid var(--line-accent)',
+            borderRadius: 'var(--radius-btn)',
+            color: 'var(--text-main)',
+            fontFamily: 'var(--font-roboto)',
+            fontSize: '0.97rem',
+            fontWeight: 500,
+            cursor: 'pointer',
+            transition: 'background 0.2s, transform 0.15s',
+          }}
+          onMouseOver={(e) => {
+            ;(e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-2px)'
+            ;(e.currentTarget as HTMLButtonElement).style.background = 'var(--rose-dim)'
+          }}
+          onMouseOut={(e) => {
+            ;(e.currentTarget as HTMLButtonElement).style.transform = ''
+            ;(e.currentTarget as HTMLButtonElement).style.background = 'var(--panel-card)'
+          }}
+          onClick={() => navigate('/')}
+        >
+          {t('results.back')}
+        </button>
+      </div>
     </PageShell>
   )
 }

@@ -31,10 +31,12 @@ export default function PageShell({
             setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
           }
         />
-        <h1 className="title">{title}</h1>
-        <hr className="my-3 border-white/10" />
+        <h1 className="title" style={{ marginBottom: '0.25rem' }}>
+          {title}
+        </h1>
+        <hr style={{ margin: '0.75rem 0 1.25rem' }} />
         {children}
-        <hr className="my-5 border-white/10" />
+        <hr style={{ margin: '2rem 0 1rem' }} />
         <Footer />
       </div>
     </div>
